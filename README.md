@@ -12,7 +12,7 @@ Microservicio basado en la gestion de una biblioteca. En ella no solo se gestion
 ### ¿Por qué he decidido este proyecto?
 Decidi elaborar este protyecto ya que el año pasado realize un proyecto basado en uan red social usando estas herramientas y me parecieron interesante y utill.
 
-### Infraestructura de la aplicación
+### Ejecucion de la aplicación
 
 ### Pasos a llevar a cabo
 
