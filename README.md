@@ -17,3 +17,6 @@ Decidi elaborar este protyecto ya que el año pasado realize un proyecto basado 
 ### Pasos a llevar a cabo
 
 ### Material externo
+
+### Autor
+Sergio Garcia Prados
