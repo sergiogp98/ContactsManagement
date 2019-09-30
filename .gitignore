@@ -1,6 +1,5 @@
 Descripcion del proyecto.md
 tests/
-database/
 docs/
 librarymanagement/
 logs/
@@ -9,5 +8,4 @@ docker-compose.yml
 Dockerfile
 Dockerfile_Flask
 requirements.txt
-server.py
-travis.yml
+.travis.yml
