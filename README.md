@@ -15,8 +15,6 @@ Proyecto basado en la gestion de reservas de libros en una biblioteca
 Decidi elaborar este protyecto ya que el año pasado realize un proyecto basado en uan red social usando estas herramientas y me parecieron interesante y utill.
 
 ### Ejecucion de la aplicación
-1. Descargar herramienta de manipulaicon de paquetes de Python [pip](https://pip.pypa.io/en/stable/installing/)
-2. Descargar docker-compose: [docker-compose](https://docs.docker.com/compose/install/)
 
 ### Pasos a llevar a cabo
 
