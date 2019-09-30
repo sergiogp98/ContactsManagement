@@ -2,3 +2,4 @@ mongoengine
 flask
 sphinx
 pytest
+flask-mongoengine
