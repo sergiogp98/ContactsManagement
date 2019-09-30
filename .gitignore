@@ -1,3 +1,12 @@
 Descripcion del proyecto.md
-test.py
-database/__pycache__/
+tests/
+database/
+docs/
+librarymanagement/
+logs/
+app.py 
+docker-compose.yml
+Dockerfile
+Dockerfile_Flask
+requirements.txt
+server.py
