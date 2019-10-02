@@ -4,7 +4,4 @@ docs/
 librarymanagement/
 logs/
 app.py 
-docker-compose.yml
-Dockerfile
-Dockerfile_Flask
-requirements.txt
+
