@@ -4,4 +4,4 @@ docs/
 librarymanagement/
 logs/
 app.py 
-
+Pipfile.lock
