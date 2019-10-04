@@ -1,7 +1,4 @@
 Descripcion del proyecto.md
-tests/
-docs/
-librarymanagement/
-logs/
-app.py 
+librarymanagement/database/__pycache__/
 Pipfile.lock
+
