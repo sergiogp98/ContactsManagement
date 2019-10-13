@@ -3,7 +3,7 @@
 ## Proyecto para la asignatura Infraestructura Virtual (4º II, ETSIIT)
 
 ### Introducción
-Este proyecto se basa en el desarrollo de un microservicio de una aplicación sobre gestión de contenido multimedia. Esta aplicación está orientada a cinéfilos y les permite gestionar películas que hayan visto o tienen intención de ver. Para saber más sobre qué es y para que sirve lea las [historias de usuario](https://github.com/sergiogp98/MultimediaManagement/docs/historias_usuario.md)
+Este proyecto se basa en el desarrollo de un microservicio de una aplicación sobre gestión de contenido multimedia. Esta aplicación está orientada a cinéfilos y les permite gestionar películas que hayan visto o tienen intención de ver. Para saber más sobre qué es y para que sirve lea las [historias de usuario](https://github.com/sergiogp98/MultimediaManagement/blob/master/docs/historias_usuario.md)
 
 ### Herramientas usadas
 * Lenguaje de de la API: [JavaScript](https://www.javascript.com) con su entorno de ejecución en el lado del servidor [Node.js](https://nodejs.org/es/)
