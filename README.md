@@ -1,33 +1,22 @@
+# MultimediaManager
 
-# Historias de usuario
+## Proyecto para la asignatura Infraestructura Virtual (4º II, ETSIIT)
 
-## ¿Qué se pretede cubrir con este microservicio?
+### Introducción
+Este proyecto se basa en el desarrollo de un microservicio de una aplicación sobre gestión de contenido multimedia. Esta aplicación está orientada a cinéfilos y les permite gestionar películas que hayan visto o tienen intención de ver. Para saber más sobre qué es y para que sirve lea las [historias de usuario](https://github.com/sergiogp98/MultimediaManagement/docs/historias_usuario.md)
 
-Hoy en día el consumo de contenido multimedia se ha disparado gracias a la aparición de empresas tales como Netflix, HBO, Amazos Prime, etc. Por ello cada vez es más dificl recordar por qué temporada ibas de tal serie o incluso que te pareció aquella película. Como hipotetica empresa TIC, un grupo de críticos de cine nos piden crear un microservicio web que se pueda desplegar en la nube con el cual puedan organizar las películas que ven y poder valorarlos para luego publicar dichas críticas.
+### Herramientas usadas
+* Lenguaje de de la API: [JavaScript](https://www.javascript.com) con su entorno de ejecución en el lado del servidor [Node.js](https://nodejs.org/es/)
+* Base de datos: [MongoDB](https://www.mongodb.com/es)
+* Framework: [Express.js](https://expressjs.com/es/)
+* Herramienta para documentar: [JSDoc](https://devdocs.io/jsdoc/)
+* Testing framework: [Mocha](https://mochajs.org)
+* Servicio de log: [Log4JS](https://log4js-node.github.io/log4js-node/)
+* Sistema de integración continua: [TravisCI](https://travis-ci.org/)
 
-En concreto, el cliente pide que el microservicio les permita guardar información de aquellas películas que ha visto (con su correspondiente cŕitica) y aquellas que tienen pendientes de ver
+### ¿Cómo testearla?
 
-### Datos manejados
-* Película:
-	* Título
-	* Año de estreno
-	* Duración
-	* Género
-	* Resumen
-	* Escritores
-	* Actores principales
-	* Opinión 
-	* Estado: visto o pendiente
+### Documentación
 
-### Requisitos funcionales
-* RF1 Añadir una película: esta función almacena una película. Su estado inicial es pendiente
-* RF2 Modificar una película: esta función modifica los datos de una película. Aserciones:
-	* Existe la película (almacenada en la base de datos)
-* RF3 Devolver una película: esta función devolverá la información de una película. Se podrá consultar por cualquier campo
-* RF4 Elminar una película: esta función elimina una película. Aserciones:
-	* Existe la película (almacenada en la base de datos)
-* RF5 Modificar el estado: modifica el estado de una película
-	* Existe la película (almacenada en la base de datos)
-	* Para pasar de pendiente a visto hay que añadir una opinión
-	* Para pasar de visto a pediente, el campo opinión debe estar vacio
-	
+### Autor
+Sergio Garcia Prados
