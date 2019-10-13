@@ -4,6 +4,7 @@ tutorial/
 lib/router.js
 lib/server.js
 lib/database/models.js
+lib/database/modules/connectDB.js
 
 # Logs
 logs
