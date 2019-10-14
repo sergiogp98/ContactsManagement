@@ -5,7 +5,5 @@ node_js:
   - 6
 install:
   - npm install
-env:
-  - TEST_PATH = /home/travis/build/sergiogp98/MultimediaManagement/tests/*
 script:
   -  npm test  
