@@ -20,7 +20,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "mocha tests/addFilmTest.js"
+    "test": "mocha tests/*"
   },
   "repository": {
     "type": "git",
