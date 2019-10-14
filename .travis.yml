@@ -6,6 +6,6 @@ node_js:
 install:
   - npm install
 script:
-  - mocha tests/*  
+  -  npm test  
 env:
   - TEST_PATH = "/home/travis/build/sergiogp98/MultimediaManagement/lib/database/data/films.json"
