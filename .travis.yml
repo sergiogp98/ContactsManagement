@@ -8,4 +8,4 @@ install:
 env:
   - TEST_PATH = /home/travis/build/sergiogp98/MultimediaManagement/tests/*
 script:
-  -  mocha $TEST_PATH  
+  -  npm test  
