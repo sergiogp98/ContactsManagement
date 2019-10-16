@@ -13,7 +13,7 @@ Como framework de desarrollo de aplicaicones web usaré el conocido [Express.js]
 Para que todo proyecto vaya sobre ruedas, es necesario controlar cualquier modificación que se haga sobre el mismo. Estas modificaciones no solo pueden añadir nuevas funcionalidades sino también afectar a las ya implementadas. Para ello son necesrios los tests, para controlar que el resultado de todas las funcionalidaddes añadidas hasta el momento sean las esperadas. En mi caso, usaré el framework [Mocha](https://mochajs.org)
 
 ## Sistema de logs
-Depuarar el código es tan importante como su implementación. Para tener todo detalle de los errores que ocurren es necesario tener integrado un sistema de logs y así agilizar la detección y corrección de ls mismos. Hay muchos middleware para ello, en este proyecto usaré [Mocha](https://mochajs.org/)
+Depuarar el código es tan importante como su implementación. Para tener todo detalle de los errores que ocurren es necesario tener integrado un sistema de logs y así agilizar la detección y corrección de ls mismos. Hay muchos middleware para ello, en este proyecto usaré [Morgan](https://www.npmjs.com/package/morgan)
 
 ## Herramienta de construcción
 Permite simplificar órdenes tales como instalación o testeo de tal foma que el usuario no tenga que indagar mucho para ejecutarlas. Dado el lenguaje de programación que se va a usar, aprovecharé la gran herramienta [npm](https://www.npmjs.com). Para poder usar esta herramienta, es necesario que exista el archivo [package.json](https://github.com/sergiogp98/MultimediaManagement/blob/master/package.json) en el directorio raiz del proyecto. En él se especifican los siguientes puntos:
