@@ -1,22 +1,27 @@
 # MultimediaManager
 
+[![GitHub issues](https://img.shields.io/github/issues/sergiogp98/MultimediaManagement)](https://github.com/sergiogp98/MultimediaManagement/issues) [![GitHub license](https://img.shields.io/github/license/sergiogp98/MultimediaManagement)](https://github.com/sergiogp98/MultimediaManagement/blob/master/LICENSE) [![GitHub forks](https://img.shields.io/github/forks/sergiogp98/MultimediaManagement)](https://github.com/sergiogp98/MultimediaManagement/network) [![GitHub stars](https://img.shields.io/github/stars/sergiogp98/MultimediaManagement)](https://github.com/sergiogp98/MultimediaManagement/stargazers)
+
 ## Proyecto para la asignatura Infraestructura Virtual (4º II, ETSIIT)
 
 ### Introducción
 Este proyecto se basa en el desarrollo de un microservicio de una aplicación sobre gestión de contenido multimedia. Esta aplicación está orientada a cinéfilos y les permite gestionar películas que hayan visto o tienen intención de ver. Para saber más sobre qué es y para que sirve lea las [historias de usuario](https://github.com/sergiogp98/MultimediaManagement/blob/master/docs/historias_usuario.md)
 
 ### Herramientas usadas
-* Lenguaje de de la API: [JavaScript](https://www.javascript.com) con su entorno de ejecución en el lado del servidor [Node.js](https://nodejs.org/es/)
-* Base de datos: [MongoDB](https://www.mongodb.com/es)
-* Framework: [Express.js](https://expressjs.com/es/)
-* Herramienta para documentar: [JSDoc](https://devdocs.io/jsdoc/)
-* Testing framework: [Mocha](https://mochajs.org)
-* Servicio de log: [Log4JS](https://log4js-node.github.io/log4js-node/)
-* Sistema de integración continua: [TravisCI](https://travis-ci.org/)
+Dirigite a [este enlace](https://github.com/sergiogp98/MultimediaManagement/blob/master/docs/herramientas.md) para ver las herramientas usadas.
+
+### ¿Cómo instalarla?
+`npm install`
+Esta orden instalas las dependencias necesarias para poder correr la API. Puedes ver cuáles son desde el archivo package.json [(documentacion)]((https://github.com/sergiogp98/MultimediaManagement/blob/master/docs/herramientas.md)
+
+### ¿Qué se va a testear?
+Todas las funcionalidades que se encargan de manejar el contenido de películas.
 
 ### ¿Cómo testearla?
-
-### Documentación
+`npm test`
+Esta orden ejecuta el contenido del item "test" dentro del archivo package.json. Puedes ver cuáles son desde el archivo package.json [(documentacion)](https://github.com/sergiogp98/MultimediaManagement/blob/master/docs/herramientas.md)
 
 ### Autor
 Sergio Garcia Prados
+
+
