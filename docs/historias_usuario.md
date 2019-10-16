@@ -8,7 +8,6 @@ En concreto, el cliente pide que el microservicio les permita guardar informaci�
 
 ### Datos manejados
 * Película:
-	* _id (ID de la película)
 	* Título
 	* Año de estreno
 	* Duración
