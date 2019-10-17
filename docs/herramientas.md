@@ -18,16 +18,16 @@ Depuarar el código es tan importante como su implementación. Para tener todo d
 ## Herramienta de construcción
 Permite simplificar órdenes tales como instalación o testeo de tal foma que el usuario no tenga que indagar mucho para ejecutarlas. Dado el lenguaje de programación que se va a usar, aprovecharé la gran herramienta [npm](https://www.npmjs.com). Para poder usar esta herramienta, es necesario que exista el archivo [package.json](https://github.com/sergiogp98/MultimediaManagement/blob/master/package.json) en el directorio raiz del proyecto. En él se especifican los siguientes puntos:
 * Nombre del proyecto: **name**
-* Versión del proyecto **version**
-* Script principal **main**
-* Descripción del proyecto **description**
-* Directorios del proyecto **directories**
-* Dependencias **dependencies**
-* Dependencias de desarrollo **devDependencies**
-* Reglas para ejecutar diferenetes comando **scripts**
-* Información del repositorio **repository**
-* Autor del proyecto **author**
-* Licencia del proyecto **license**
+* Versión del proyecto: **version**
+* Script principal: **main**
+* Descripción del proyecto: **description**
+* Directorios del proyecto: **directories**
+* Dependencias: **dependencies**
+* Dependencias de desarrollo: **devDependencies**
+* Reglas para ejecutar diferenetes comando: **scripts**
+* Información del repositorio: **repository**
+* Autor del proyecto: **author**
+* Licencia del proyecto: **license**
 
 ## Sistema de integración continua (CI)
 Estos sistemas añaden agilidad a la hora de detectar fallos. Se componen de compilación y ejecución de pruebas. Para el desarrollo de este servicio, usaré dos:  
