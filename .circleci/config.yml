@@ -1,26 +1,13 @@
 version: 2
 jobs:
   build:
-    install:
-      docker:
-        - image: circleci/node:latest
-      steps:
-        - run:
-            name: 'Install all dependencies'
-            command: npm install
-    test_1:
-      docker:
-        - image: circleci/node:latest 
-      working_directory: tests
-      steps:
-        - run:
-            name: 'Run tests for latest version of node'
-            command: mocha tests/*
-    test_2:
-      docker:
-        - image: circleci/node:9.0
-      working_directory: tests
-      steps:
-        - run:
-            name: 'Run tests for version 9 of node'
-            command: mocha tests/*
+    docker:
+      - image: circleci/node:latest
+      - image: circleci/node:9.0
+    steps:
+      - run:
+          name: 'Install all dependencies'
+          command: npm install
+      - run:
+          name: 'Run tests for latest version of node'
+          command: mocha tests/*
