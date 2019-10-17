@@ -3,11 +3,11 @@ jobs:
   build:
     docker:
       - image: circleci/node:latest
+    working_directory: .
     steps:
-      working_directory: .
-      - run:
-          name: 'Install all dependencies'
-          command: npm install
-      - run:
-          name: 'Run tests for latest version of node'
-          command: npm test
+    - run:
+        name: 'Install all dependencies'
+        command: npm install
+    - run:
+        name: 'Run tests for latest version of node'
+        command: npm test
