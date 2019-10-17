@@ -31,7 +31,7 @@ Permite simplificar órdenes tales como instalación o testeo de tal foma que el
 
 ## Sistema de integración continua (CI)
 Estos sistemas añaden agilidad a la hora de detectar fallos. Se componen de compilación y ejecución de pruebas. Para el desarrollo de este servicio, usaré dos:  
-* [Circle CI](https://circleci.com). En el archivo de configuración ([config.yml]()), se detallan los siguientes apartados:
+* [Circle CI](https://circleci.com). En el archivo de configuración ([config.yml](https://github.com/sergiogp98/MultimediaManagement/blob/master/.circleci/config.yml)), se detallan los siguientes apartados:
     * Versión de Circle CI: **version**
     * Conjunto de pasos: **jobs**
     * Entry point: **build**
