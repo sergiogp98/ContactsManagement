@@ -4,6 +4,7 @@ jobs:
     docker:
       - image: circleci/node:latest
     steps:
+      working_directory: .
       - run:
           name: 'Install all dependencies'
           command: npm install
