@@ -17,24 +17,30 @@ Depuarar el código es tan importante como su implementación. Para tener todo d
 
 ## Herramienta de construcción
 Permite simplificar órdenes tales como instalación o testeo de tal foma que el usuario no tenga que indagar mucho para ejecutarlas. Dado el lenguaje de programación que se va a usar, aprovecharé la gran herramienta [npm](https://www.npmjs.com). Para poder usar esta herramienta, es necesario que exista el archivo [package.json](https://github.com/sergiogp98/MultimediaManagement/blob/master/package.json) en el directorio raiz del proyecto. En él se especifican los siguientes puntos:
-* Nombre del proyecto (name)
-* Versión del proyecto (version)
-* Script principal (main)
-* Descripción del proyecto (description)
-* Directorios del proyecto (directories)
-* Dependencias (dependencies)
-* Dependencias de desarrollo (devDependencies)
-* Reglas para ejecutar diferenetes comando (scripts)
-* Información del repositorio (repository)
-* Autor del proyecto (author)
-* Licencia del proyecto (license)
+* Nombre del proyecto: **name**
+* Versión del proyecto **version**
+* Script principal **main**
+* Descripción del proyecto **description**
+* Directorios del proyecto **directories**
+* Dependencias **dependencies**
+* Dependencias de desarrollo **devDependencies**
+* Reglas para ejecutar diferenetes comando **scripts**
+* Información del repositorio **repository**
+* Autor del proyecto **author**
+* Licencia del proyecto **license**
 
 ## Sistema de integración continua (CI)
 Estos sistemas añaden agilidad a la hora de detectar fallos. Se componen de compilación y ejecución de pruebas. Para el desarrollo de este servicio, usaré dos:  
-* [Circle CI](https://circleci.com)
+* [Circle CI](https://circleci.com). En el archivo de configuración ([config.yml]()), se detallan los siguientes apartados:
+    * Versión de Circle CI: **version**
+    * Conjunto de pasos: **jobs**
+    * Entry point: **build**
+    * Ejecuta los pasos con docker: **docker**
+    * Imagen como contenedro principal. Aquí se ejecutarán todos los *steps*: **image**
+    * Verificar el código fuente en el directorio de trabajo: ***checkout**
 
 * [TravisCI](https://travis-ci.org/). En el archivo de configuración ([.travis.yml](https://github.com/sergiogp98/MultimediaManagement/blob/master/.travis.yml)), se detallan los siguintes apartados:
-    * Espcifico el lenguaje usado: node_js
-    * Prueba con diferentes versiones de node.js: 10, 8 y 6
-    * Instala las dependencias necesarias para correr la API: npm install (ver apartado herramientas de construcción)
-    * Ejecuta los tests: npm test (ver apartado herramientas de construcción)
+    * Espcifico el lenguaje usado: **language**
+    * Prueba con diferentes versiones del lenguaje
+    * Instala las dependencias necesarias para correr la API: **install** 
+    * Ejecuta los comandos: **scripts** 
