@@ -3,11 +3,10 @@ jobs:
   build:
     docker:
       - image: circleci/node:latest
-      - image: circleci/node:9.0
     steps:
       - run:
           name: 'Install all dependencies'
           command: npm install
       - run:
           name: 'Run tests for latest version of node'
-          command: mocha tests/*
+          command: npm test
