@@ -5,9 +5,10 @@ jobs:
       - image: circleci/node:latest
     working_directory: .
     steps:
-    - run:
-        name: 'Install all dependencies'
-        command: npm install
-    - run:
-        name: 'Run tests for latest version of node'
-        command: npm test
+      - checkout
+      - run:
+          name: 'Install all dependencies'
+          command: npm install
+      - run:
+          name: 'Run tests for latest version of node'
+          command: npm test
