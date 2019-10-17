@@ -37,7 +37,7 @@ Estos sistemas añaden agilidad a la hora de detectar fallos. Se componen de com
     * Entry point: **build**
     * Ejecuta los pasos con docker: **docker**
     * Imagen como contenedro principal. Aquí se ejecutarán todos los *steps*: **image**
-    * Verificar el código fuente en el directorio de trabajo: ***checkout**
+    * Verificar el código fuente en el directorio de trabajo: **checkout**
 
 * [TravisCI](https://travis-ci.org/). En el archivo de configuración ([.travis.yml](https://github.com/sergiogp98/MultimediaManagement/blob/master/.travis.yml)), se detallan los siguintes apartados:
     * Espcifico el lenguaje usado: **language**
