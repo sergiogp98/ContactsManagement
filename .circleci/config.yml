@@ -1,0 +1,18 @@
+version: 2
+jobs:
+  test1:
+    docker:
+      - image: circleci/node: latest 
+    working_directory: tests
+    steps:
+      - run:
+        name: 'Install all dependencies'
+        command: mocha tests/*
+  test2:
+    docker:
+      - image: circleci/node: 9.0
+    working_directory: tests
+    steps:
+      - run:
+        name: 'Install all dependencies'
+        command: mocha tests/*
