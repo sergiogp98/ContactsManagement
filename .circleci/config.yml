@@ -1,4 +1,5 @@
 version: 2
+
 jobs:
   build:
     docker:
@@ -8,6 +9,18 @@ jobs:
       - run:
           name: 'Install all dependencies'
           command: npm install
+  test:
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - checkout
       - run:
-          name: 'Run tests for latest version of node'
+          name: 'Run the tests'
           command: npm test
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test
