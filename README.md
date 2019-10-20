@@ -12,14 +12,14 @@ Dirigite a este [enlace](https://github.com/sergiogp98/MultimediaManagement/blob
 
 ### ¿Cómo instalarla?
 `npm install`
-* Esta orden instala las dependencias necesarias para poder correr la API. Ver [herramienta de contrucción](https://github.com/sergiogp98/MultimediaManagement/blob/master/docs/herramientas.md) para más detalle
+* Esta orden instala las dependencias necesarias para poder correr la API. Ver [herramienta de contrucción](https://github.com/sergiogp98/MultimediaManagement/blob/master/docs/herramientas_construccion.md) para más detalle
 
 ### ¿Qué se va a testear?
 Todas las funcionalidades que se encargan de manejar el contenido de películas.
 
 ### ¿Cómo testearla?
 `npm test`
-* Esta orden ejecuta los tests. Ver [herramienta de contrucción](https://github.com/sergiogp98/MultimediaManagement/blob/master/docs/herramientas.md) para más detalle
+* Esta orden ejecuta los tests. Ver [herramienta de contrucción](https://github.com/sergiogp98/MultimediaManagement/blob/master/docs/herramientas_construccion.md) para más detalle
 
 ### Autor
 [Sergio Garcia Prados](https://github.com/sergiogp98)
