@@ -16,7 +16,6 @@ Para poder usar estos sistemas, es necesario añadir unos archivos de configurac
             * **run**: define comandos a ejecutar. Concretamente se ejecutan dos:
                 * Instalar las dependencias
                 * Ejecutar los test
-    * **workflow**: se usa para optimizar la ejecución de los trabajos. Paraleliza la ejecución de los trabajos definidos arriba: *build* y *test*.
 
 Para más información mira la [documentación](https://circleci.com/docs/2.0/configuration-reference/) oficial en la web de Circle CI
  
