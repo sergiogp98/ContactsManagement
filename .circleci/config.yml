@@ -9,5 +9,6 @@ jobs:
       - run:
           name: 'Install all dependencies'
           command: npm install
+      -run:
           name: 'Run the tests'
           command: npm test
