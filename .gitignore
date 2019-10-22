@@ -1,9 +1,6 @@
 #Folders and files
-lib/router.js
-lib/server.js
-lib/database/models.js
-lib/database/modules/connectDB.js
 docs/_config.yml
+package-lock.json
 
 # Logs
 logs
