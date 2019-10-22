@@ -1,7 +1,5 @@
-var addModule = require('../lib/database/modules/addFilm');
 var assert = require('assert');
-var deleteModule = require('../lib/database/modules/deleteFilm');
-var getModule = require('../lib/database/modules/getFilm');
+var modules = require('../lib/storage/filesystem/modules');
 
 var film = {
     title: 'Joker',
@@ -14,10 +12,9 @@ var film = {
 
 describe('Add film', function(){
     it('Check if a film has been added', function(){
-        if (getModule.getFilmTitle(film.title) == 'Some films were returned by its title'){
-            deleteModule.deleteFilm(film);
+        if(modules.getFilm(film).success){
+            modules.deleteFilm(film);
         }
-        assert.equal(addModule.addFilm(film), 'Film added correctly!');
-        deleteModule.deleteFilm(film);
+        assert.ok(modules.addFilm(film).success); 
     });
 });

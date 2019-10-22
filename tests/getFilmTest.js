@@ -1,7 +1,5 @@
-var addModule = require('../lib/database/modules/addFilm');
-var getModule = require('../lib/database/modules/getFilm');
 var assert = require('assert');
-var deleteModule = require('../lib/database/modules/deleteFilm');
+var modules = require('../lib/storage/filesystem/modules');
 
 var film = {
     title: 'El señor de los anillos: El retorno del rey',
@@ -12,63 +10,50 @@ var film = {
     director: 'Peter Jackson'
 };
 
+
 describe('Get film', function(){
-
-    it('Ckeck if some films are returned by its title', function(){
-        addModule.addFilm(film);
-        assert.equal(getModule.getFilmTitle(film.title), 'Some films were returned by its title');
-        deleteModule.deleteFilm(film);        
+    it('Ckeck if some films are returned', function(){
+        modules.addFilm(film);
+        assert.ok(modules.getFilm(film).success);        
     });
-
+    
+    it('Ckeck if some films are returned by its title', function(){
+        assert.ok(modules.getFilmTitle(film.title).success);        
+    });
+    
     describe('Check if some films are returned by its year', function(){
         it('Greater than a year', function(){
-            addModule.addFilm(film);
-            assert.equal(getModule.getFilmYear(film.year - 1, 'greater'), 'Some films with a greater year release were returned');
-            deleteModule.deleteFilm(film);
+            assert.ok(modules.getFilmYear(film.year - 1, 'greater').success);
         });
 
         it('Equal than a year', function(){
-            addModule.addFilm(film);
-            assert.equal(getModule.getFilmYear(film.year, 'equal'), 'Some films with the same year release were returned');
-            deleteModule.deleteFilm(film);
+            assert.ok(modules.getFilmYear(film.year, 'equal').success);
         });
         
         it('Less than a year', function(){
-            addModule.addFilm(film);
-            assert.equal(getModule.getFilmYear(film.year + 1, 'less'), 'Some films with a less year release were returned');
-            deleteModule.deleteFilm(film);
+            assert.ok(modules.getFilmYear(film.year + 1, 'less').success);
         });
     });
 
     describe('Check if some films are returned by its length', function(){
         it('Greater than a length', function(){
-            addModule.addFilm(film);
-            assert.equal(getModule.getFilmLength(film.length - 1, 'greater'), 'Some films with a greater length were returned');
-            deleteModule.deleteFilm(film);
+            assert.ok(modules.getFilmLength(film.length - 1, 'greater').success);
         });
 
         it('Equal than a length', function(){
-            addModule.addFilm(film);
-            assert.equal(getModule.getFilmLength(film.length, 'equal'), 'Some films with the same length were returned');
-            deleteModule.deleteFilm(film);
+            assert.ok(modules.getFilmLength(film.length, 'equal').success);
         });
         
         it('Less than a length', function(){
-            addModule.addFilm(film);
-            assert.equal(getModule.getFilmLength(film.length + 1, 'less'), 'Some films with a less length were returned');
-            deleteModule.deleteFilm(film);
+            assert.ok(modules.getFilmLength(film.length + 1, 'less').success);
         });
     });
-
+    
     it('Ckeck if some films are returned by its genre', function(){
-        addModule.addFilm(film);
-        assert.equal(getModule.getFilmGenre(film.genre[0]), 'Some films were returned by its genre');
-        deleteModule.deleteFilm(film);
+        assert.ok(modules.getFilmGenre(film.genre[0]).success);
     });
-
+    
     it('Ckeck if some films are returned by its director', function(){
-        addModule.addFilm(film);
-        assert.equal(getModule.getFilmDirector(film.director), 'Some films were returned by its director');
-        deleteModule.deleteFilm(film);
+        assert.ok(modules.getFilmDirector(film.director).success);
     });
 });

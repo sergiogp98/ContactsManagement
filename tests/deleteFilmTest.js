@@ -1,6 +1,5 @@
-var addModule = require('../lib/database/modules/addFilm');
-var deleteModule = require('../lib/database/modules/deleteFilm');
 var assert = require('assert');
+var modules = require('../lib/storage/filesystem/modules');
 
 var film = {
     title: 'El caballero oscuro',
@@ -11,36 +10,35 @@ var film = {
     director: 'Christopher Nolan'
 };
 
-
 describe('Delete film', function(){
     it('Check if some film were deleted', function(){
-        addModule.addFilm(film);
-        assert.equal(deleteModule.deleteFilm(film), 'Some films were deleted')
+        modules.addFilm(film);
+        assert.ok(modules.deleteFilm(film));
     });
-
+    
     it('Check if some film were deleted by its title', function(){
-        addModule.addFilm(film);
-        assert.equal(deleteModule.deleteFilmTitle(film.title), 'Some films were deleted by its title')
+        modules.addFilm(film);
+        assert.ok(modules.deleteFilmTitle(film.title).success);
     });
-
+    
     it('Check if some film were deleted by its year', function(){
-        addModule.addFilm(film);
-        assert.equal(deleteModule.deleteFilmYear(film.year), 'Some films were deleted by its year')
+        modules.addFilm(film);
+        assert.ok(modules.deleteFilmYear(film.year).success);
     });
-
+    
     it('Check if some film were deleted by its length', function(){
-        addModule.addFilm(film);
-        assert.equal(deleteModule.deleteFilmLength(film.length), 'Some films were deleted by its length')
+        modules.addFilm(film);
+        assert.ok(modules.deleteFilmLength(film.length).success);
     });
-
+    
     it('Check if some film were deleted by its genre', function(){
-        addModule.addFilm(film);
-        assert.equal(deleteModule.deleteFilmGenre(film.genre[0]), 'Some films were deleted by its genre')
+        modules.addFilm(film);
+        assert.ok(modules.deleteFilmGenre(film.genre[0]).success);
     });
-
+    
     it('Check if some film were deleted by its director', function(){
-        addModule.addFilm(film);
-        assert.equal(deleteModule.deleteFilmDirector(film.director), 'Some films were deleted by its director')
+        modules.addFilm(film);
+        assert.ok(modules.deleteFilmDirector(film.director).success);
     });
 });
 
