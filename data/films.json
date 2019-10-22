@@ -1,0 +1,12 @@
+{
+  "films": [
+    {
+      "title": "Batman",
+      "year": 2020,
+      "length": 150,
+      "genre": "Science fiction",
+      "summary": "An insomniac office worker and a devil-may-care soapmaker form an underground fight club that evolves into something much, much more.",
+      "director": "Robert de Niro"
+    }
+  ]
+}
