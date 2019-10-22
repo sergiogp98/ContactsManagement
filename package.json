@@ -8,17 +8,16 @@
     "test": "tests"
   },
   "dependencies": {
-    "stable": "^0.1.8",
-    "mongoose": "^5.7.3",
-    "express": "^4.7.1",
     "dotenv": "^8.1.0",
+    "express": "^4.7.1",
     "mocha": "^6.2.0",
+    "mongoose": "^5.7.3",
     "morgan": "^1.9.1",
-    "sleep": "6.1.0"
+    "stable": "^0.1.8"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "mocha tests/*"
+    "test": "mocha tests/*; node lib/storage/filesystem/removeTestResults.js"
   },
   "repository": {
     "type": "git",
