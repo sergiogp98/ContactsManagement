@@ -14,13 +14,12 @@ function createDB(db, schema){
     schema.set("collection", db);
     Model = mongoose.model(db, schema);
     Model.createCollection();
+    console.log(Model);
     return Model;
 }
 
 async function connectDB() {
     createDB(process.env.FILM_DB_NAME, schema.filmSchema);
-    console.log('LLEGA');
-
     createDB(process.env.TEST_DB_NAME, schema.filmSchema);
     await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
     return await mongoose.connection;
