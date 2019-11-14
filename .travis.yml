@@ -1,11 +1,29 @@
+sudo: false
+
 language: node_js
+
 node_js:
+  - 12
   - 10
   - 8
-  - 6
+
 services:
-  - mongodb
+  - mongodb 
+
+env:
+  global:
+    - MONGODB_VERSION=4.0
+
+before_install:
+  - wget http://fastdl.mongodb.org/linux/mongodb-linux-x86_64-$MONGODB_VERSION.tgz
+  - tar xfz mongodb-linux-x86_64-$MONGODB_VERSION.tgz
+  - export PATH=`pwd`/mongodb-linux-x86_64-$MONGODB_VERSION/bin:$PATH
+  - mkdir -p data/db
+  - mongod --dbpath=data/db &
+  - sleep 3
+
 install:
   - npm install
+
 script:
   -  npm test  
