@@ -1,14 +1,15 @@
-sudo: required
-
 language: node_js
 
 node_js:
-  - 12
-  - 10
-  - 8
+  - "12"
+  - "10"
+  - "8"
 
-services:
-  - mongodb 
+cache:
+  directories:
+    - "node_modules"
+
+sudo: false
 
 install:
   - npm install

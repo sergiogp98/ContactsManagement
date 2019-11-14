@@ -17,7 +17,7 @@ const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}
 describe('POST /film', function(){
     before(async () => {
         try{
-            await moongose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+            await moongose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
             process.env.USE_TEST_DB = true;
         } catch(err) {
             console.log(err);
