@@ -4,7 +4,7 @@ jobs:
   build:
     docker:
       - image: circleci/node:latest
-      - image: circleci/mongo:latest
+      #- image: circleci/mongo:latest
         #port: 27017:27017
         ##environment:
         ##  - MONGODB_URL: "mongodb+srv://Sergio:admin@clustersergio-czq9b.mongodb.net/MultimediaManagement?retryWrites=true&w=majority"

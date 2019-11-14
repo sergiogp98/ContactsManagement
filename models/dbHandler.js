@@ -18,8 +18,9 @@ function createDB(db, schema){
 }
 
 async function connectDB() {
-    console.log('LLEGA');
     createDB(process.env.FILM_DB_NAME, schema.filmSchema);
+    console.log('LLEGA');
+
     createDB(process.env.TEST_DB_NAME, schema.filmSchema);
     await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
     return await mongoose.connection;
