@@ -14,6 +14,7 @@ router.delete('/films/:id', async function(req, res){
     } catch(err) {
         httpRes = await modules.errorResponse(err);
     } finally {
+        console.log(httpRes);
         res.status(httpRes.status);
         res.send(httpRes.body);
     }
