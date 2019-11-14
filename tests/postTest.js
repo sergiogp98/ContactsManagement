@@ -13,14 +13,19 @@ const film = {
 }; 
 
 describe('POST /film', function(){
-    before(async function(){
+    before(function(done){
         process.env.USE_TEST_DB = true;
-        await modules.connectDB();
+        supertest(app)
+        .get('/connectDB')
+        .expect(200, done);
     });
 
-    after(async function() {
-        await modules.deleteFilmTitle(film.title);
+    after(function(done) {
+        supertest(app)
+        .delete(`/films/title/${film.title}`)
+        .expect(200);
         process.env.USE_TEST_DB = false;
+        done();
     });
 
     it('Add a film', function(done) {

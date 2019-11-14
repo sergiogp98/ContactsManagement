@@ -16,30 +16,30 @@ let id = String;
 let filmAdded = moongose.Query;
 
 describe('DELETE /film', function(){
-    //before(function(done) {
-    //    process.env.USE_TEST_DB = true;
-    //    modules.connectDB();
-    //    done();
-    //});
-//
-    //beforeEach(function(done) {     
-    //    filmAdded = modules.addFilm(film)
-    //    done();
-    //});
-//
-    //after(function(done) {
-    //    modules.deleteFilm(id);
-    //    modules.disconnectDB();
-    //    process.env.USE_TEST_DB = false;
-    //    done();
-    //});
-    //
-    //it('Delete film by ID', function(done){
-    //    id = filmAdded['_id'];
-    //    suppertest(app)
-    //    .delete(`/films/${id}`)
-    //    .expect(200, done);
-    //});
+    before(function(done) {
+        process.env.USE_TEST_DB = true;
+        modules.connectDB();
+        done();
+    });
+
+    beforeEach(function(done) {     
+        filmAdded = modules.addFilm(film)
+        done();
+    });
+
+    after(function(done) {
+        modules.deleteFilm(id);
+        modules.disconnectDB();
+        process.env.USE_TEST_DB = false;
+        done();
+    });
+    
+    it('Delete film by ID', function(done){
+        id = filmAdded['_id'];
+        suppertest(app)
+        .delete(`/films/${id}`)
+        .expect(200, done);
+    });
 
     it('Delete films by title', function(done){
         suppertest(app)

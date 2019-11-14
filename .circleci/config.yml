@@ -14,9 +14,6 @@ jobs:
       #    name: Wait fo Mongo
       #    command: dockerize -wait tcp://localhost:27017 -timeout 1m 
       - checkout 
-      - run: 
-          name: 'Install mongo'
-          command: sudo apt install -y mongo-tools 
       - run:
           name: 'Install all dependencies'
           command: npm install

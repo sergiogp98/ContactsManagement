@@ -18,6 +18,30 @@ router.get('/status', async function(req, res) {
     }
 });
 
+router.get('/connectDB', async function(req, res) {
+    try{
+        await modules.connectDB();
+        res.status(200);
+        res.send('Successfully connected to DB');
+    } catch(err) {
+        httpRes = await modules.errorResponse(err);
+        res.status(httpRes.status);
+        res.send(httpRes.body);
+    }
+});
+
+router.get('/disconnectDB', async function(req, res) {
+    try{
+        await modules.disconnectDB();
+        res.status(200);
+        res.send('Successfully disconnected of DB');
+    } catch(err) {
+        httpRes = await modules.errorResponse(err);
+        res.status(httpRes.status);
+        res.send(httpRes.body);
+    }
+});
+
 router.get('/films', async function(req, res){
     try{
         query = await modules.getDBContent(process.env.FILM_DB_NAME);
