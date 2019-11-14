@@ -13,11 +13,18 @@ const film = {
 }; 
 
 describe('POST /film', function(){
+    process.env.USE_TEST_DB = true;
+    
     before(function(done){
-        process.env.USE_TEST_DB = true;
         supertest(app)
         .get('/connectDB')
-        .expect(200, done);
+        .expect(200)
+        .end(function(err, res) {
+            if(err) {
+                console.log('Err: ', err);
+            } 
+            done();
+        })
     });
 
     after(function(done) {
