@@ -56,7 +56,7 @@ async function postResponse(query) {
 async function putResponse(query) {
     if (query.nModified == 1) {
         res.status = HttpStatus.OK;
-        res.body = HttpStatus.getStatusText(query);  
+        res.body = query;  
     } else {
         res.status = HttpStatus.ACCEPTED;
         res.body = HttpStatus.getStatusText(res.status);
