@@ -31,12 +31,12 @@ describe('POST /film', function(){
     //    process.env.USE_TEST_DB = false;
     //});
 
-    it('Add a film', function(done) {
+    it('Add a film', async function() {
         await moongose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
         supertest(app)
         .post('/films')
         .send(film)
-        .expect(201, done);         
+        .expect(201);         
     });
 });
 
