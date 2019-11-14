@@ -15,25 +15,24 @@ const film = {
 const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@clustersergio-czq9b.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`
 
 describe('POST /film', function(){
-    //before(async () => {
-    //    try{
-    //        await moongose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-    //        process.env.USE_TEST_DB = true;
-    //    } catch(err) {
-    //        console.log(err);
-    //        process.exit(1);
-    //    }
-    //});
-//
-    //after(async () => {
-    //    //await modules.deleteFilmTitle(film.title);
-    //    await moongose.disconnect();
-    //    process.env.USE_TEST_DB = false;
-    //});
+    before(async () => {
+        try{
+            await moongose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+            process.env.USE_TEST_DB = true;
+        } catch(err) {
+            console.log(err);
+            process.exit(1);
+        }
+    });
 
-    it('Add a film', async function() {
-        await moongose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-        supertest(app)
+    after(async () => {
+        await modules.deleteFilmTitle(film.title);
+        await moongose.disconnect();
+        process.env.USE_TEST_DB = false;
+    });
+
+    it('Add a film', async () => {
+        await supertest(app)
         .post('/films')
         .send(film)
         .expect(201);         

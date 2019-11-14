@@ -1,5 +1,6 @@
 const app = require('./controllers/routes');
 const modules = require('./modules');
+const schema = require('./models/schema');
 require('dotenv').config();
 
 modules.createDB(process.env.FILM_DB_NAME, schema.filmSchema);
