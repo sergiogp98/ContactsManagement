@@ -22,14 +22,9 @@ describe('DELETE /film', function(){
     });
 
     beforeEach(function(done) {     
-        modules.addFilm(film)
-        .then(filmAdded => {
-            id = filmAdded['_id'];
-            done();
-        })
-        .catch(err => {
-            throw new Error(err);
-        })
+        filmAdded = modules.addFilm(film)
+        id = filmAdded['_id'];
+        done();
     });
 
     after(async function(done) {
