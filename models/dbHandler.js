@@ -10,12 +10,12 @@ require('dotenv').config();
     //Use remote database
         const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@clustersergio-czq9b.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`
 
-function createDB(db, schema){
+async function createDB(db, schema){
     schema.set("collection", db);
-    Model = mongoose.model(db, schema);
+    Model = await mongoose.model(db, schema);
     console.log('Model: ', Model);
 
-    Model.createCollection();
+    await Model.createCollection();
     return Model;
 }
 
