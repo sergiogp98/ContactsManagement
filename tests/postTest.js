@@ -17,13 +17,13 @@ describe('POST /film', function(){
         process.env.USE_TEST_DB = true;
         await supertest(app)
         .get('/connectDB')
-        .expect(200, done);
+        .expect(200);
     });
 
     after(async function() {
         await supertest(app)
         .delete(`/films/title/${film.title}`)
-        .expect(200, done);
+        .expect(200);
         process.env.USE_TEST_DB = false;
     });
 
