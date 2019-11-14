@@ -9,15 +9,37 @@
   },
   "dependencies": {
     "dotenv": "^8.1.0",
-    "express": "^4.7.1",
-    "mocha": "^6.2.0",
-    "mongoose": "^5.7.3",
-    "morgan": "^1.9.1",
-    "stable": "^0.1.8"
+    "stable": "^0.1.8",
+    "swagger-ui-express": "^4.1.2",
+    "yamljs": "^0.3.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "docco": "^0.8.0",
+    "express": "^4.17.1",
+    "grunt": "^1.0.4",
+    "grunt-cli": "^1.3.2",
+    "grunt-docco": "^0.5.0",
+    "http-status-codes": "^1.4.0",
+    "mocha": "^6.2.2",
+    "mongoose": "^5.7.8",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.19.4",
+    "pm2": "^4.1.2",
+    "supertest": "^4.0.2"
+  },
   "scripts": {
-    "test": "mocha tests/*; node lib/storage/filesystem/removeTestResults.js"
+    "test": "mocha --timeout=5000 --exit tests/*",
+    "start": "pm2 start app.js",
+    "start-dev": "nodemon -e js,yml app.js",
+    "stop": "pm2 stop app.js",
+    "restart": "pm2 restart app.js",
+    "status": "pm2 status",
+    "monit": "pm2 monit",
+    "plus": "pm2 plus",
+    "logs": "pm2 logs",
+    "delete": "pm2 delete all"
   },
   "repository": {
     "type": "git",
