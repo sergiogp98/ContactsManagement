@@ -14,11 +14,6 @@ En concreto, el cliente pide que el microservicio les permita guardar informaci�
 	* Género
 	* Resumen
 	* Director
-* Review:
-	* Nickname (clave primaria)
-	* ID de película (clave primaria)
-	* Opinión
-	* Estado: pendiente o vista
 
 ### Requisitos funcionales
 * RF1 Añadir una película: esta función almacena una película. Aserciones
@@ -30,17 +25,3 @@ En concreto, el cliente pide que el microservicio les permita guardar informaci�
 	* Se podrá consultar por cualquier campo
 * RF4 Elminar una película: esta función elimina una película. Aserciones:
 	* Existe la película (almacenada en la base de datos)
-* RF5 Añadir una review: esta función añade una review de un usuario. Aserciones:
-	* Si el estado es visto, el campo opinion no puede estar vacio
-	* Si el estado es pendiente, el campo opinión tiene que estar vacio
-	* No puede haber dos reviews con el mismo nickname e ID de película
-* RF5 Modificar una review: esta función modifica el estado de una review. Aserciones:
-	* Se busa por ambos campos: nickname e ID de película
-	* Si pasa de pendiente a vista, el campo de opinión no puede estar vacio
-	* Si pasa de vista a pendiente, el campo de opinión tiene que estar vacio
-* RF6 Devolver review: esta función devuelve la review. Aserciones:
-	* Se podrá consultar por cualquier campo
-* RF7 Eliminar review: esta función elimina uan review:
-	* Existe l review (almacenada en la base de datos)
-	
-	

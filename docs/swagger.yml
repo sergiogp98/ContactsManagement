@@ -1,0 +1,320 @@
+openapi: 3.0.0
+
+info:
+  title: MultimediaManagement
+  description: "Desarrollo de un microservicio de una aplicación sobre gestión de contenido multimedia"
+  version: 1.0
+  license:
+    name: GPL-3.0
+  externalDocs:
+    url: https://github.com/sergiogp98/MultimediaManagement
+
+paths:
+  /status:
+    get:
+      description: Return status
+      responses:
+        '200':
+          $ref: '#/components/responses/Status'
+
+  /films:
+    get:
+      description: Returns film database.
+      responses:
+        '200':
+          description: Successfully retrived database.
+          content:
+            appliction/json:
+              schema:
+                $ref: '#/components/schemas/Film'
+        '204':
+          $ref: '#/components/responses/NoContent'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    post:
+      description: Add a new flm
+      requestBody:
+        $ref: '#/components/requestBodies/NewFilm'
+      responses:
+        '201':
+          description: Successfully added new film.
+          content:
+            application/json:
+              shcema:
+                $ref: '#/components/schemas/Film'
+        '202':
+          $ref: '#/components/responses/Accepted'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /test:
+    get:
+    description: Returns test database.
+    response:
+        '200':
+          description: Successfully retrived test database.
+          content:
+            appliction/json:
+              schema:
+                $ref: '#/components/schemas/Film'
+        '204':
+          $ref: '#/components/responses/NoContent'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+          
+  /films/{id}:
+    parameters:
+      - $ref: '#/components/parameters/id'
+
+    get:
+      description: Get film by ID.
+      responses:
+        '200':
+          description: Successfully retrived data.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Film'
+        '204':
+          $ref: '#/components/responses/NoContent'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+    delete:
+      description: Delete film by ID
+      responses:
+        '200':
+          description: Successfully deleted data.
+          content:
+            schema:
+              $ref: '#/components/schemas/Response'
+        '204':
+          $ref: '#/components/responses/NoContent'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+    put:
+      description: Modify film by ID
+      requestBody:
+        $ref: '#/components/requestBodies/NewFilm'
+      responses:
+        '200':
+          description: Successfully modified film.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Film'
+        '202':
+          $ref: '#/components/responses/Accepted'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /films/{field}/{option}/{value}: 
+    parameters:
+      - in: path
+        name: field
+        required: true
+        description: Data field to search for (*title*, *year*, *length*, *genre* or *director*).
+
+      - in: path
+        name: option
+        required: false
+        description: Data option to search for (*lt* or *gt*). They means *less than* and *greater than*. It is only available on **GET** and **DELETE** methods.
+
+      - in: path
+        name: value
+        required: true
+        description: Value of the data field.
+    
+    get:
+      descriprion: Get films depending on the *field*, *option* and *value*.
+      responses:
+        '200':
+          description: Successfully retrived data.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Film'
+        '204':
+          $ref: '#/components/responses/NoContent'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+    delete:
+      descriprion: Delete films films depending on the *field*, *option* and *value*.
+      responses:
+        '200':
+          description: Successfully deleted data.
+          $ref: '#/components/responses/OK'
+        '204':
+          $ref: '#/components/responses/NoContent'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+components:
+  schemas:
+    Film:
+      type: object
+      properties:
+        title:
+          $ref: '#/components/parameters/title'
+        year:
+          $ref: '#/components/parameters/year'
+        length:
+          $ref: '#/components/parameters/length'
+        genre:
+          $ref: '#/components/parameters/genre'
+        summary:
+          $ref: '#/components/parameters/summary'
+        drector:
+          $ref: '#/components/parameters/director'
+
+    Response:
+      type: object
+      properties:
+        status:
+          type: integer
+        body:
+          type: string
+      required:
+        - status
+        - body
+
+  parameters:
+    title:
+      in: path
+      required: true 
+      schema:
+        type: string
+      description: Title of the film.
+
+    year:
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: Release year of the film.
+      
+    length:
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: Length of the film.
+      
+    genre:
+      in: path
+      schema:
+        type: array
+        items:
+          type: string
+      descrption: Genre of the film. Could have more than one genre.
+      
+    summary:
+      in: path
+      schema:
+        type: string
+      description: Summary of the film.
+
+    director:
+      in: path
+      schema:
+        type: string
+      description: Director of the film.
+
+    lt:
+      in: path
+      schema:
+        type: string
+      description: Less than. Only available on **DELETE** and **GET** methods were *field* is *lenght* or *year*.
+
+    gt:
+      in: path
+      schema:
+        type: string
+      description: Greater than. Only available on **DELETE** and **GET** methods were *field* is *lenght* or *year*.
+
+    id:
+      in: path
+      name: id
+      required: true
+      schema:
+        type: string
+      description: Identification of the film.
+
+  requestBodies:
+    NewFilm:
+      description: New data film
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Film'
+  
+  responses:
+    NotAcceptable:
+      description: The data passed in the URL or body are incorrect.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Response'
+    
+    InternalServerError:
+      description: An internal server error has occured.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Response'
+    
+    Created:
+      description: A new film has been created and saved.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Film'
+    
+    NoContent:
+      description: The request has ben successfully retrieved but no content was found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Response'
+    
+    Accepted:
+      description: The request has ben successfully processed but no content was modified.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Response'
+    
+    OK:
+      description: The request has ben successfully processed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Response'
+    
+    Status:
+      content: 
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                description: OK
+
+
+    
+
+  

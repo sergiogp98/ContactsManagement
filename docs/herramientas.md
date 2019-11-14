@@ -10,12 +10,9 @@ Para almacenar la información y poder gestionarla voy a implementar el sistema 
 Como framework de desarrollo de aplicaciones web usaré el conocido [Express.js](https://expressjs.com/es/) ya que es minimalista y muy flexible
  
 ## Test
-Para que todo proyecto vaya sobre ruedas, es necesario controlar cualquier modificación que se haga sobre el mismo. Estas modificaciones no solo pueden añadir nuevas funcionalidades sino también afectar a las ya implementadas. Para ello son necesarios los tests, para controlar que el resultado de todas las funcionalidades añadidas hasta el momento sean las esperadas. En mi caso, usaré el framework [Mocha](https://mochajs.org)
+Para que todo proyecto vaya sobre ruedas, es necesario controlar cualquier modificación que se haga sobre el mismo. Estas modificaciones no solo pueden añadir nuevas funcionalidades sino también afectar a las ya implementadas. Para ello son necesarios los tests, para controlar que el resultado de todas las funcionalidades añadidas hasta el momento sean las esperadas. En mi caso, usaré el framework [Supertest](https://www.npmjs.com/package/supertest)
  
 ## Sistema de logs
 Depurar el código es tan importante como su implementación. Para tener todo detalle de los errores que ocurren es necesario tener integrado un sistema de logs y así agilizar la detección y corrección de los mismos. Hay muchos middleware para ello pero en este proyecto usaré [Morgan](https://www.npmjs.com/package/morgan)
- 
-## Sistema de integración continúa 
-Accede a la [documentación](https://github.com/sergiogp98/MultimediaManagement/blob/master/docs/herramientas_ci.md) para más detalle
  
 
