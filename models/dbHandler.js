@@ -11,8 +11,9 @@ require('dotenv').config();
         const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@clustersergio-czq9b.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`
 
 function createDB(db, schema){
-    console.log('LLEGA');
     schema.set("collection", db);
+    console.log('LLEGA');
+
     Model = mongoose.model(db, schema);
     Model.createCollection();
     return Model;
