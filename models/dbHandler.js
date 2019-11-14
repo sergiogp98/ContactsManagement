@@ -12,9 +12,10 @@ require('dotenv').config();
 
 function createDB(db, schema){
     schema.set("collection", db);
+    console.log(Model);
+
     Model = mongoose.model(db, schema);
     Model.createCollection();
-    console.log(Model);
     return Model;
 }
 
