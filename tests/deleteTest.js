@@ -15,7 +15,7 @@ const film = {
 let id = String;
 let filmAdded = moongose.Query;
 
-describe('DELETE /film', async function(){
+describe('DELETE /film', function(){
     before(async function() {
         process.env.USE_TEST_DB = true;
         await modules.connectDB();

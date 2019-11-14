@@ -7,14 +7,13 @@ jobs:
       - image: circleci/mongo:latest
         port: 27017:27017
         environment:
-          - MONGODB_USERNAME: "Sergio"
-          - MONGODB_PASSWORD: "admin"
+          - MONGODB_URL: "mongodb+srv://Sergio:admin@clustersergio-czq9b.mongodb.net/MultimediaManagement?retryWrites=true&w=majority"
 
     steps:
       #- run:
       #    name: Wait fo Mongo
       #    command: dockerize -wait tcp://localhost:27017 -timeout 1m 
-      - checkout
+      - checkout 
       - run:
           name: 'Install all dependencies'
           command: npm install
