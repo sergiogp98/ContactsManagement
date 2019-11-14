@@ -6,17 +6,23 @@ jobs:
       - image: circleci/node:latest
       - image: circleci/mongo:latest
         port: 27017:27017
-        environment:
-          - MONGODB_URL: "mongodb+srv://Sergio:admin@clustersergio-czq9b.mongodb.net/MultimediaManagement?retryWrites=true&w=majority"
+        ##environment:
+        ##  - MONGODB_URL: "mongodb+srv://Sergio:admin@clustersergio-czq9b.mongodb.net/MultimediaManagement?retryWrites=true&w=majority"
 
     steps:
       #- run:
       #    name: Wait fo Mongo
       #    command: dockerize -wait tcp://localhost:27017 -timeout 1m 
       - checkout 
+      - run: 
+          name: 'Install mongo'
+          command: sudo apt install -y mongo-tools 
       - run:
           name: 'Install all dependencies'
           command: npm install
+      - run:
+          name: 'Run mongo db'
+          command: mongod
       - run:
           name: 'Run the tests'
           command: npm test
