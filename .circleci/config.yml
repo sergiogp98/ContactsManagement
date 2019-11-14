@@ -22,7 +22,7 @@ jobs:
           command: npm install
       - run:
           name: 'Run mongo db'
-          command: mongod
+          command: /usr/bin/mongod
       - run:
           name: 'Run the tests'
           command: npm test
