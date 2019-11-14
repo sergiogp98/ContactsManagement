@@ -13,26 +13,34 @@ const film = {
     director: 'Christopher Nolan'
 };
 let id = String;
-let filmAdded = moongose.Query;
+//let filmAdded = moongose.Query;
 
 describe('DELETE /film', function(){
     before(async function() {
         process.env.USE_TEST_DB = true;
-        //await modules.connectDB();
+        modules.connectDB();
     });
 
-    beforeEach(async function() {     
-        filmAdded = await modules.addFilm(film);
+    beforeEach(function(done) {     
+        modules.addFilm(film)
+        .then(filmAdded => {
+            id = filmAdded['_id'];
+            done();
+        })
+        .catch(err => {
+            throw new Error(err);
+        })
     });
 
-    after(async function() {
-        await modules.deleteFilm(id);
-        await modules.disconnectDB();
+    after(async function(done) {
+        modules.deleteFilm(id);
+        modules.disconnectDB();
         process.env.USE_TEST_DB = false;
+        done();
     });
     
     it('Delete film by ID', function(done){
-        id = filmAdded['_id'];
+        //id = filmAdded['_id'];
         suppertest(app)
         .delete(`/films/${id}`)
         .expect(200, done);
