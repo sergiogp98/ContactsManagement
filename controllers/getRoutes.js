@@ -25,7 +25,6 @@ router.get('/connectDB', async function(req, res) {
         res.send('Successfully connected to DB');
     } catch(err) {
         httpRes = await modules.errorResponse(err);
-        console.log('Err: ', httpRes);
         res.status(httpRes.status);
         res.send(httpRes.body);
     }
