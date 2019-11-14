@@ -12,7 +12,11 @@ require('dotenv').config();
 
 async function createDB(db, schema){
     schema.set("collection", db);
-    return await mongoose.model(db, schema).createCollection();
+    console.log('ANTES DEL MODEL');
+    const Model = mongoose.model(db, schema);
+    console.log('Model: ', Model);
+    Model.createCollection();
+    return Model;
 }
 
 async function connectDB() {
