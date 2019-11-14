@@ -1,6 +1,7 @@
 const modules = require('../modules');
 const supertest = require('supertest');
 const app = require('../controllers/routes');
+require('dotenv').config();
 
 const film = {
     title: 'Joker',
@@ -14,12 +15,15 @@ const film = {
 describe('POST /film', function(){
     before(async function(){
         process.env.USE_TEST_DB = true;
-        await modules.connectDB();
+        await supertest(app)
+        .get('/connectDB')
+        .expect(200, done);
     });
 
     after(async function() {
-        await modules.deleteFilmTitle(film.title);
-        await modules.disconnectDB();
+        await supertest(app)
+        .delete(`/films/title/${film.title}`)
+        .expect(200, done);
         process.env.USE_TEST_DB = false;
     });
 
