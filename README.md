@@ -19,8 +19,7 @@ Este proyecto se basa en el desarrollo de un microservicio de una aplicación so
 Dirigite a este [enlace](https://github.com/sergiogp98/MultimediaManagement/blob/master/docs/herramientas.md) para ver las herramientas usadas.
 
 ### Herramienta de construcción
-buildtool: package.json 
-Ver [herramienta de construcción](https://github.com/sergiogp98/MultimediaManagement/blob/master/docs/herramientas_construccion.md) para más detalle
+buildtool: package.json (ver [herramienta de construcción](https://github.com/sergiogp98/MultimediaManagement/blob/master/docs/herramientas_construccion.md) para más detalle)
 
 ### Integración continua
 Para poder ver las herramientas de integración continua usadas, dirígete a este [enlace](https://github.com/sergiogp98/MultimediaManagement/blob/master/docs/herramientas_ci.md) para más detalle
