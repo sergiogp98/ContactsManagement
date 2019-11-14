@@ -12,16 +12,11 @@ require('dotenv').config();
 
 function createDB(db, schema){
     schema.set("collection", db);
-    console.log('ANTES DEL MODEL');
     mongoose.model(db, schema)
-    console.log('Model: ', Model);
-    Model.createCollection();
-    return Model;
+    return Model.createCollection();
 }
 
 async function connectDB() {
-    //createDB(process.env.FILM_DB_NAME, schema.filmSchema);
-    //createDB(process.env.TEST_DB_NAME, schema.filmSchema);
     await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
     return await mongoose.connection;
 }

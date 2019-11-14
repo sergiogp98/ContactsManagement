@@ -13,17 +13,19 @@ const film = {
 }; 
 
 describe('POST /film', function(){
-    before(async function(){
-        process.env.USE_TEST_DB = true;
-        await supertest(app)
-        .get('/connectDB')
-        .expect(200);
+    before(async () => {
+        try{
+            await modules.connectDB();
+            process.env.USE_TEST_DB = true;
+        } catch(err) {
+            console.log(err);
+            process.exit(1);
+        }
     });
 
-    after(async function() {
-        await supertest(app)
-        .delete(`/films/title/${film.title}`)
-        .expect(200);
+    after(async () => {
+        await modules.deleteFilmTitle(film.title);
+        await modules.disconnectDB();
         process.env.USE_TEST_DB = false;
     });
 
