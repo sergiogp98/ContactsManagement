@@ -17,7 +17,7 @@ const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}
 describe('POST /film', function(){
     before(async () => {
         try{
-            await moongose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
+            await moongose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
             process.env.USE_TEST_DB = true;
         } catch(err) {
             console.log(err);
@@ -31,11 +31,11 @@ describe('POST /film', function(){
         process.env.USE_TEST_DB = false;
     });
 
-    it('Add a film', async () => {
-        await supertest(app)
+    it('Add a film', function(done) {
+        supertest(app)
         .post('/films')
         .send(film)
-        .expect(201);         
+        .expect(201, done);         
     });
 });
 
