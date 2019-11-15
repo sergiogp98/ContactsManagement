@@ -35,7 +35,7 @@ async function getDBContent(name) {
 
 async function createFilmDocument(newFilm) {
     console.log('LLEGA');
-    const model = await getDB(process.env.FILM_COLLECTION_NAME); 
+    const model = await getDB('Film'); 
     console.log('Model: ', model);
     return await model.create(newFilm);
 }
