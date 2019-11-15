@@ -7,10 +7,11 @@ router.put('/films/:id/', async function(req, res){
     try{
         const modifiedFilm = req.body;
         query = await modules.modifyFilm(req.params.id, modifiedFilm);
-        httpRes = await modules.putResponse(query);
+        httpRes = await modules.putResponse(query, req.body);
     } catch(err) {
         httpRes = await modules.errorResponse(err);
     } finally {
+        console.log(httpRes);
         res.status(httpRes.status);
         res.send(httpRes.body);
     }

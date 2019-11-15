@@ -53,15 +53,15 @@ async function postResponse(query) {
     return res;
 }
 
-async function putResponse(query) {
-    if (query.nModified == 1) {
-        res.status = HttpStatus.OK;
-        res.body = query;  
-    } else {
+async function putResponse(query, body) {
+    if (query == false || query.nModified == 0) {
         res.status = HttpStatus.ACCEPTED;
         res.body = HttpStatus.getStatusText(res.status);
+    } else {
+        res.status = HttpStatus.OK;
+        res.body = body;
     }
-    
+        
     return res;
 }
 
