@@ -11,7 +11,9 @@ function createDB(dbName, dbSchema){
 }
 
 async function connectDB(uri) {
-    await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+    await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true }, (err) => {
+        if (err) console.error(err);
+    });
     return await mongoose.connection;
 }
 
