@@ -2,8 +2,8 @@ const modules = require('../modules');
 require('dotenv').config();
 
 async function checkExistsFilm(film){
-    const db = await modules.checkUseTestDB();
-    const exists = await db.exists({
+    const model = await modules.getDB(process.env.FILM_COLLECTION_NAME);
+    const exists = await model.exists({
         title: film.title,
         director: film.director,
         year: film.year

@@ -3,20 +3,14 @@ const schema = require('../models/schema');
 const modules = require('../modules');
 require('dotenv').config();
 
-//Connection variables
-    //Use Local database
-        //const uri = `mongodb://${process.env.DB_LOCAL_ADDRESS}:${process.env.DB_LOCAL_PORT}/${process.env.DB_NAME}`;
-    
-    //Use remote database
-        const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@clustersergio-czq9b.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`
 
-function createDB(db, schema){
-    schema.set("collection", db);
-    const Model = mongoose.model(db, schema)
+function createDB(dbName, dbSchema){
+    dbSchema.set("collection", dbName);
+    const Model = mongoose.model(dbName, dbSchema);
     return Model.createCollection();
 }
 
-async function connectDB() {
+async function connectDB(uri) {
     await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
     return await mongoose.connection;
 }
@@ -38,8 +32,8 @@ async function getDBContent(name) {
 }
 
 async function createFilmDocument(newFilm) {
-    db = await modules.checkUseTestDB();
-    return await db.create(newFilm);
+    const model = await getDB(process.env.FILM_COLLECTION_NAME); 
+    return await model.create(newFilm);
 }
 
 async function findFilmDocument(option) {
