@@ -3,11 +3,11 @@ const moongose = require('mongoose');
 const supertest = require('supertest');
 const modules = require('../modules');
 const request = supertest(app);
-const MongoMemoryServer = require('mongodb-memory-server');
+const { MongoMemoryServer } = require('mongodb-memory-server');
 require('dotenv').config();
 
-let mongoUri = String;
-let mongoServer = MongoMemoryServer;
+let mongoUri = new String;
+const mongoServer = new MongoMemoryServer();
 
 const film = {
     title: 'Joker',
@@ -19,7 +19,6 @@ const film = {
 };
 
 beforeAll(async () => {
-    mongoServer = new MongoMemoryServer();
     mongoUri = await mongoServer.getConnectionString();
     await modules.connectDB(mongoUri);
     //try{
@@ -32,7 +31,7 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
-    await moongose.disconnect();
+    await moongose.connection.close();
     await mongoServer.stop();
     //const collections = Object.keys(moongose.connection.collections);
     //for (const collectionName of collections) {
