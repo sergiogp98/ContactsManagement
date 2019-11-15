@@ -8,19 +8,14 @@
     "test": "tests"
   },
   "dependencies": {
+    "codecov": "^3.6.1",
     "dotenv": "^8.1.0",
     "stable": "^0.1.8",
     "swagger-ui-express": "^4.1.2",
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
-    "chai": "^4.2.0",
-    "chai-http": "^4.3.0",
-    "docco": "^0.8.0",
     "express": "^4.17.1",
-    "grunt": "^1.0.4",
-    "grunt-cli": "^1.3.2",
-    "grunt-docco": "^0.5.0",
     "http-status-codes": "^1.4.0",
     "jest": "^24.9.0",
     "mocha": "^6.2.2",
@@ -32,8 +27,7 @@
     "supertest": "^4.0.2"
   },
   "scripts": {
-    "test": "jest",
-    "test:wartch": "jest --watch",
+    "test": "jest && codecov -t 7920c07b-cb25-482d-90c7-b68b46ec2322",
     "start": "pm2 start app.js",
     "start-dev": "nodemon -e js,yml app.js",
     "stop": "pm2 stop app.js",
@@ -45,7 +39,9 @@
     "delete": "pm2 delete all"
   },
   "jest": {
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true
   },
   "repository": {
     "type": "git",

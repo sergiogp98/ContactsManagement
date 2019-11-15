@@ -18,5 +18,10 @@ jobs:
           name: 'Install all dependencies'
           command: npm install
       - run:
+          name: 'Run coverage'
+          command:
+            - istanbul cover ./node_modules/mocha/bin/_mocha --reporter lcovonly -- -R spec
+            - codecov
+      - run:
           name: 'Run the tests'
           command: npm test
