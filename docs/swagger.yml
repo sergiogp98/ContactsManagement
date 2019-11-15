@@ -48,22 +48,7 @@ paths:
           $ref: '#/components/responses/NotAcceptable'
         '500':
           $ref: '#/components/responses/InternalServerError'
-
-  /test:
-    get:
-    description: Returns test database.
-    response:
-        '200':
-          description: Successfully retrived test database.
-          content:
-            appliction/json:
-              schema:
-                $ref: '#/components/schemas/Film'
-        '204':
-          $ref: '#/components/responses/NoContent'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-          
+                   
   /films/{id}:
     parameters:
       - $ref: '#/components/parameters/id'

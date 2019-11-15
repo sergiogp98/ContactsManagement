@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const schema = require('../models/schema');
-const modules = require('../modules');
 require('dotenv').config();
 
 
@@ -34,30 +33,23 @@ async function getDBContent(name) {
 }
 
 async function createFilmDocument(newFilm) {
-    console.log('LLEGA');
-    const model = await getDB('Film'); 
-    console.log('Model: ', model);
-    return await model.create(newFilm);
+    return await mongoose.model('Film').create(newFilm);
 }
 
 async function findFilmDocument(option) {
-    db = await modules.checkUseTestDB();
-    return await db.find(option);
+    return await mongoose.model('Film').find(option);
 }
 
 async function deleteFilmDocumentByID(id) {
-    db = await modules.checkUseTestDB();
-    return await db.deleteOne({_id: id});
+    return await mongoose.model('Film').deleteOne({_id: id});
 }
 
 async function deleteFilmDocument(option) {
-    db = await modules.checkUseTestDB();
-    return db.deleteMany(option);    
+    return await mongoose.model('Film').deleteMany(option);    
 }
 
 async function updateFilmDocument(id, modifiedFilm) {
-    db = await modules.checkUseTestDB();
-    return db.updateOne(
+    return await mongoose.model('Film').updateOne(
         {_id: id}, 
         {
             title: modifiedFilm.title,

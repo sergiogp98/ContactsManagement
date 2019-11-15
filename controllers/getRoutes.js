@@ -20,7 +20,7 @@ router.get('/status', async function(req, res) {
 
 router.get('/films', async function(req, res){
     try{
-        query = await modules.getDBContent(process.env.FILM_DB_NAME);
+        query = await modules.getDBContent('Films');
         httpRes = await modules.getResponse(query);
     } catch(err) {
         httpRes = await modules.errorResponse(err);
@@ -29,18 +29,6 @@ router.get('/films', async function(req, res){
         res.send(httpRes.body);
     }
 });
-
-router.get('/test', async function(req, res) {
-    try{
-        query = await modules.getDBContent(process.env.TEST_DB_NAME);
-        httpRes = await modules.getResponse(query);
-    } catch(err) {
-        httpRes = await modules.errorResponse(err);
-    } finally {
-        res.status(httpRes.status);
-        res.send(httpRes.body);
-    }
-})
 
 router.get('/films/:id', async function(req, res){
     try{

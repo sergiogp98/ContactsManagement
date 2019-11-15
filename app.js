@@ -1,22 +1,30 @@
 const app = require('./controllers/routes');
 const modules = require('./modules');
 const schema = require('./models/schema');
-require('dotenv').config();
+
+//Environmental variables
+const SERVER_PORT = process.env.SERVER_PORT || 8080;
+const DB_PORT = process.env.LOCAL_DB_PORT || 27017;
+const ADDRESS = process.env.LOCAL_DB_ADDRESS || "localhost";
+const DB_USERNAME = process.env.DB_USERNAME || "admin";
+const DB_PASSWORD = process.env.DB_PASSWORD || "admin";
+const DB_NAME = process.env.DB_NAME || "MultimediaManagement";
+const COLLECTION_NAME = process.env.COLLECTION_NAME || "Film";
 
 //Connection variables
     //Use Local database
-        //const uri = `mongodb://${process.env.DB_LOCAL_ADDRESS}:${process.env.DB_LOCAL_PORT}/${process.env.DB_NAME}`;
+        //const uri = `mongodb://${ADDRESS}:${DB_PORT}/${DB_NAME}`;
     
     //Use remote database
-    const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@clustersergio-czq9b.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`
+    const uri = `mongodb+srv://${DB_USERNAME}:${DB_PASSWORD}@clustersergio-czq9b.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`
 
-modules.createDB(process.env.FILM_DB_NAME, schema.filmSchema);
-modules.createDB(process.env.TEST_DB_NAME, schema.filmSchema);
+schema.filmSchema.set("collection", COLLECTION_NAME);
+modules.createDB(COLLECTION_NAME, schema.filmSchema);
 modules.connectDB(uri)
 .then(connection => {
-    connection.useDb(process.env.FILM_DB_NAME);
-    app.set('port', process.env.SERVER_PORT);
-    app.listen(process.env.SERVER_PORT);
+    connection.useDb(DB_NAME);
+    app.set('port', SERVER_PORT);
+    app.listen(SERVER_PORT);
 })
 .catch(err => {
     throw new Error(err);

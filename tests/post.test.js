@@ -4,7 +4,6 @@ const supertest = require('supertest');
 const modules = require('../modules');
 const request = supertest(app);
 const { MongoMemoryServer } = require('mongodb-memory-server');
-require('dotenv').config();
 
 let mongoUri = new String;
 const mongoServer = new MongoMemoryServer();
@@ -19,28 +18,26 @@ const film = {
 };
 
 beforeAll(async () => {
-    mongoUri = await mongoServer.getConnectionString();
-    await modules.connectDB(mongoUri);
-    //try{
-    //    const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@clustersergio-czq9b.mongodb.net/${process.env.TEST_DB_NAME}?retryWrites=true&w=majority`
-    //    await moongose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-    //} catch(err) {
-    //    console.log(err);
-    //    process.exit(1);
-    //}
+    try{
+        mongoUri = await mongoServer.getConnectionString();
+        await modules.connectDB(mongoUri);
+    } catch(err) {
+        console.log(err);
+        process.exit(1);
+    }
 });
 
 afterAll(async () => {
-    await moongose.connection.close();
-    await mongoServer.stop();
-    //const collections = Object.keys(moongose.connection.collections);
-    //for (const collectionName of collections) {
-    //    const collection = moongose.connection.collections[collectionName];
-    //    await collection.deleteMany();
-    //}
+    try{
+        await moongose.connection.close();
+        await mongoServer.stop();
+    } catch(err) {
+        console.log(err);
+        process.exit(1);
+    }
 });
 
-describe('POST /film', () => {
+describe('POST /film', function() {
     it('Add a film', async done => {
         const response = await request.post('/films').send(film);
         expect(response.status).toBe(201);

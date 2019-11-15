@@ -1,8 +1,12 @@
-const modules = require('../modules');
-const suppertest = require('supertest');
 const app = require('../controllers/routes');
 const moongose = require('mongoose');
-require('dotenv').config();
+const supertest = require('supertest');
+const modules = require('../modules');
+const request = supertest(app);
+const { MongoMemoryServer } = require('mongodb-memory-server');
+    
+let mongoUri = new String;
+const mongoServer = new MongoMemoryServer();
 
 const  film = {
     title: 'Pulp Fiction',
@@ -20,26 +24,33 @@ const modifiedFilm = {
     summary: 'An insomniac office worker and a devil-may-care soapmaker form an underground fight club that evolves into something much, much more.',
     director: 'Robert de Niro'
 };
-let id = String;
 
-describe('PUT /film', async function(){
-    before(async function(){
-        process.env.USE_TEST_DB = true;
-        await modules.connectDB();
+beforeAll(async () => {
+    try{
+        mongoUri = await mongoServer.getConnectionString();
+        await modules.connectDB(mongoUri);
+    } catch(err) {
+        console.log(err);
+        process.exit(1);
+    }
+});
+
+afterAll(async () => {
+    try{
+        await moongose.connection.close();
+        await mongoServer.stop();
+    } catch(err) {
+        console.log(err);
+        process.exit(1);
+    }
+});
+
+describe('PUT /film', function(){
+    it('Modify film', async done => {
         const filmAdded = await modules.addFilm(film);
-        id = filmAdded['_id'];
-    });
-
-    after(async function(){
-        await modules.deleteFilm(id);
-        await modules.disconnectDB();
-        process.env.USE_TEST_DB = false;
-    });
-
-    it('Modify film', function(done){
-        suppertest(app)
-        .put(`/films/${id}`)
-        .send(modifiedFilm)
-        .expect(200, done);
+        const id = filmAdded['_id'];
+        const response = await request.put(`/films/${id}`).send(modifiedFilm);
+        expect(response.status).toBe(200);
+        done();
     });
 });

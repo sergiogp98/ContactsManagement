@@ -1,8 +1,13 @@
-const modules = require('../modules');
-const suppertest = require('supertest');
 const app = require('../controllers/routes');
 const moongose = require('mongoose');
-require('dotenv').config();
+const supertest = require('supertest');
+const modules = require('../modules');
+const request = supertest(app);
+const { MongoMemoryServer } = require('mongodb-memory-server');
+    
+let mongoUri = new String;
+const mongoServer = new MongoMemoryServer();
+let filmAdded = moongose.Query;
 
 const film = {
     title: 'El caballero oscuro',
@@ -12,90 +17,99 @@ const film = {
     summary: 'When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.',
     director: 'Christopher Nolan'
 };
-let id = String;
-let filmAdded = moongose.Query;
+
+beforeAll(async () => {
+    try{
+        mongoUri = await mongoServer.getConnectionString();
+        await modules.connectDB(mongoUri);
+    } catch(err) {
+        console.log(err);
+        process.exit(1);
+    }
+});
+
+beforeEach(async () => {
+    try{
+        filmAdded = await modules.addFilm(film);
+    } catch(err) {
+        console.log(err);
+        process.exit(1);
+    }
+});
+
+afterAll(async () => {
+    try{
+        await moongose.connection.close();
+        await mongoServer.stop();
+    } catch(err) {
+        console.log(err);
+        process.exit(1);
+    }
+});
 
 describe('DELETE /film', function(){
-    before(function(done) {
-        process.env.USE_TEST_DB = true;
-        modules.connectDB();
+    it('Delete film by ID', async done => {
+        const id = filmAdded['_id'];
+        const response = await request.delete(`/films/${id}`)
+        expect(response.status).toBe(200);
         done();
     });
 
-    beforeEach(function(done) {     
-        filmAdded = modules.addFilm(film)
+    it('Delete films by title', async done => {
+        const response = await request.get(`/films/title/${film.title}`)
+        expect(response.status).toBe(200);
         done();
-    });
-
-    after(function(done) {
-        modules.deleteFilm(id);
-        modules.disconnectDB();
-        process.env.USE_TEST_DB = false;
-        done();
-    });
-    
-    it('Delete film by ID', function(done){
-        id = filmAdded['_id'];
-        suppertest(app)
-        .delete(`/films/${id}`)
-        .expect(200, done);
-    });
-
-    it('Delete films by title', function(done){
-        suppertest(app)
-        .delete(`/films/title/${film.title}`)
-        .expect(200, done);
     });
     
     describe('Delete films by year', function(){
-        it('Greater than a year',  function(done){
-            suppertest(app)
-            .delete(`/films/year/gt/${film.year - 1}`)
-            .expect(200, done);
+        it('Greater than a year', async done => {
+            const response = await request.get(`/films/year/gt/${film.year - 1}`)
+            expect(response.status).toBe(200);
+            done();
         });
 
-        it('Equal than a year', function(done){
-            suppertest(app)
-            .delete(`/films/year/${film.year}`)
-            .expect(200, done);
+        it('Equal than a year', async done => {
+            const response = await request.get(`/films/year/${film.year}`)
+            expect(response.status).toBe(200);
+            done();
         });
         
-        it('Less than a year', function(done){
-            suppertest(app)
-            .delete(`/films/year/lt/${film.year + 1}`)
-            .expect(200, done);
+        it('Less than a year', async done => {
+            const response = await request.get(`/films/year/lt/${film.year + 1}`)
+            expect(response.status).toBe(200);
+            done();
         });
     });
     
     describe('Delete films by length', function(){
-        it('Greater than a length', function(done){
-            suppertest(app)
-            .delete(`/films/length/gt/${film.length - 1}`)
-            .expect(200, done);
+        it('Greater than a length', async done => {
+            const response = await request.get(`/films/length/gt/${film.length - 1}`)
+            expect(response.status).toBe(200);
+            done();
         });
 
-        it('Equal than a length', function(done){
-            suppertest(app)
-            .delete(`/films/length/${film.length}`)
-            .expect(200, done);
+        it('Equal than a length', async done => {
+            const response = await request.get(`/films/length/${film.length}`)
+            expect(response.status).toBe(200);
+            done();
         });
         
-        it('Less than a length', function(done){
-            suppertest(app)
-            .delete(`/films/length/lt/${film.length + 1}`)
-            .expect(200, done);
+        it('Less than a length', async done => {
+            const response = await request.get(`/films/length/lt/${film.length + 1}`)
+            expect(response.status).toBe(200);
+            done();
         });
     });
 
-    it('Delete films by genre', function(done){
-        suppertest(app)
-        .delete(`/films/genre/${film.genre[0]}%20${film.genre[1]}%20${film.genre[2]}`)
-        .expect(200, done);
+    it('Delete films by genre', async done => {
+        const response = await request.get(`/films/genre/${film.genre[0]}%20${film.genre[1]}%20${film.genre[2]}`)
+        expect(response.status).toBe(200);
+        done();
     });
     
-    it('Delete films by director', function(done){
-        suppertest(app)
-        .delete(`/films/director/${film.director}`)
-        .expect(200, done);
+    it('Delete films by director', async done => {
+        const response = await request.get(`/films/director/${film.director}`)
+        expect(response.status).toBe(200);
+        done();
     });
 });

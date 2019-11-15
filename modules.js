@@ -58,7 +58,3 @@ exports.errorResponse = httpHandler.errorResponse;
 exports.deleteResponse = httpHandler.deleteResponse;
 exports.postResponse = httpHandler.postResponse;
 exports.putResponse = httpHandler.putResponse;
-
-//Check use test db
-const checkTest = require('./middlewares/chechUseTestDB');
-exports.checkUseTestDB = checkTest.checkUseTestDB
