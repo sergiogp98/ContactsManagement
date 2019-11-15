@@ -15,7 +15,7 @@ Para poder usar esta herramienta, es necesario que exista el archivo [package.js
 * **dependencies**: dependencias necesarias para instalar (se instalan con *npm install*)
 * **devDependencies**: dependencias necesarias para instalar durante el proceso de desarrollo (se instalan con *npm install*)
 * **scripts**: reglas para ejecutar diferentes comandos. En concreto se lista:    
-    * *test*: ejecuta los tests de prueba localizados en el directorio [tests](https://github.com/sergiogp98/MultimediaManagement/tree/master/tests)
+    * *test*: ejecuta los tests de prueba localizados en el directorio [tests](https://github.com/sergiogp98/MultimediaManagement/tree/master/tests) y hace una cobertura de código.
     * *start*: lanza la aplicación cuando está en producción 
     * *start-dev*: lanza la aplicación cuando está en desarrollo
     * *stop*: detiene la ejecución de la aplicación cuando está en producción
@@ -25,6 +25,7 @@ Para poder usar esta herramienta, es necesario que exista el archivo [package.js
     * *plus*: permite visualizar la gestión de las tareas desde la web (requiere autenticación)
     * *logs*: permite ver los logs de las tareas en ejecución
     * *delete*: eliminas las tareas guardadas
+* **jest**: variables de configuración para los tests
 * **repository**: información sobre la localización del código (repositorio)
 * **author**: autor del proyecto
 * **license**: licencia del proyecto 
