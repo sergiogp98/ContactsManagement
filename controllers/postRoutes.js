@@ -6,6 +6,7 @@ router.post('/films', async function(req, res){
     try{
         const newFilm = req.body;
         const query = await modules.addFilm(newFilm);
+        console.log('LLEga')
         httpRes = await modules.postResponse(query);
     } catch(err) {
         console.log(err);
