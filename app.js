@@ -3,7 +3,7 @@ const modules = require('./modules');
 const schema = require('./models/schema');
 
 //Environmental variables
-const SERVER_PORT = process.env.SERVER_PORT || 8080;
+const SERVER_PORT = process.env.PORT || 8080;
 const DB_PORT = process.env.LOCAL_DB_PORT || 27017;
 const ADDRESS = process.env.LOCAL_DB_ADDRESS || "localhost";
 const DB_USERNAME = process.env.DB_USERNAME || "Sergio";
@@ -22,7 +22,9 @@ async function startAPI() {
     await modules.connectDB(uri);
     await modules.createDB(COLLECTION_NAME, schema.filmSchema);
     app.set('port', SERVER_PORT);
-    app.listen(SERVER_PORT);
+    app.listen(SERVER_PORT, function() {
+        console.log(`Listening on http://${ADDRESS}:${SERVER_PORT}`);
+    });
 };
 
 startAPI();
