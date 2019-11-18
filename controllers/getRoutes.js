@@ -1,11 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const modules = require('../modules');
-require('dotenv').config();
 
 const castError = {
     name: "CastError"
 }
+
+router.get('/', async function(req, res) {
+    res.status(200);
+    res.send('Welcome to MultimediaManagement API');
+});
 
 router.get('/status', async function(req, res) {
     try{
