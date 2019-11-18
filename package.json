@@ -29,6 +29,7 @@
   "scripts": {
     "test": "jest && codecov -t 7920c07b-cb25-482d-90c7-b68b46ec2322",
     "start": "pm2-runtime start ecosystem.config.js --env production",
+    "start-heroku": "node app.js",
     "start-dev": "nodemon -e js,yml app.js",
     "stop": "pm2 stop app.js",
     "restart": "pm2 restart app.js",
