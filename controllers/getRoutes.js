@@ -7,15 +7,10 @@ const castError = {
 }
 
 router.get('/', async function(req, res) {
-    res.status(200);
-    res.send('Welcome to MultimediaManagement API');
-});
-
-router.get('/status', async function(req, res) {
     try{
         httpRes = await modules.getResponse({"status": "OK"});
     } catch(err) {
-        httpRes = await modules.errorResponse(err);
+        httpRes = await modules.errorResponse(err, req);
     } finally {
         res.status(httpRes.status);
         res.send(httpRes.body);
@@ -27,7 +22,7 @@ router.get('/films', async function(req, res){
         query = await modules.getDBContent('Films');
         httpRes = await modules.getResponse(query);
     } catch(err) {
-        httpRes = await modules.errorResponse(err);
+        httpRes = await modules.errorResponse(err, req);
     } finally {
         res.status(httpRes.status);
         res.send(httpRes.body);
@@ -39,7 +34,7 @@ router.get('/films/:id', async function(req, res){
         query = await modules.getFilm(req.params.id);
         httpRes = await modules.getResponse(query);
     } catch(err) {
-        httpRes = await modules.errorResponse(err);
+        httpRes = await modules.errorResponse(err, req);
     } finally {
         res.status(httpRes.status);
         res.send(httpRes.body);
@@ -51,7 +46,7 @@ router.get('/films/director/:director', async function(req, res){
         query = await modules.getFilmDirector(req.params.director);
         httpRes = await modules.getResponse(query);
     } catch(err) {
-        httpRes = await modules.errorResponse(err);
+        httpRes = await modules.errorResponse(err, req);
     } finally {
         res.status(httpRes.status);
         res.send(httpRes.body);
@@ -65,7 +60,7 @@ router.get('/films/genre/:genre', async function(req, res){
         query = await modules.getFilmGenre(genres);
         httpRes = await modules.getResponse(query);
     } catch(err) {
-        httpRes = await modules.errorResponse(err);
+        httpRes = await modules.errorResponse(err, req);
     } finally {
         res.status(httpRes.status);
         res.send(httpRes.body);
@@ -77,7 +72,7 @@ router.get('/films/length/:length', async function(req, res){
         query = await modules.getFilmLength(req.params.length);
         httpRes = await modules.getResponse(query);
     } catch(err) {
-        httpRes = await modules.errorResponse(err);
+        httpRes = await modules.errorResponse(err, req);
     } finally {
         res.status(httpRes.status);
         res.send(httpRes.body);
@@ -98,7 +93,7 @@ router.get('/films/length/:option/:length', async function(req, res){
         }
         httpRes = await modules.getResponse(query);
     } catch(err) {
-        httpRes = await modules.errorResponse(err);
+        httpRes = await modules.errorResponse(err, req);
     } finally {
         res.status(httpRes.status);
         res.send(httpRes.body);
@@ -110,7 +105,7 @@ router.get('/films/title/:title', async function(req, res){
         query = await modules.getFilmTitle(req.params.title);
         httpRes = await modules.getResponse(query);
     } catch(err) {
-        httpRes = await modules.errorResponse(err);
+        httpRes = await modules.errorResponse(err, req);
     } finally {
         res.status(httpRes.status);
         res.send(httpRes.body);
@@ -122,7 +117,7 @@ router.get('/films/year/:year', async function(req, res){
         query = await modules.getFilmYear(req.params.year);
         httpRes = await modules.getResponse(query);
     } catch(err) {
-        httpRes = await modules.errorResponse(err);
+        httpRes = await modules.errorResponse(err, req);
     } finally {
         res.status(httpRes.status);
         res.send(httpRes.body);
@@ -143,7 +138,7 @@ router.get('/films/year/:option/:year', async function(req, res){
         }
         httpRes = await modules.getResponse(query);
     } catch(err) {
-        httpRes = await modules.errorResponse(err);
+        httpRes = await modules.errorResponse(err, req);
     } finally {
         res.status(httpRes.status);
         res.send(httpRes.body);

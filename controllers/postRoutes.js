@@ -8,7 +8,7 @@ router.post('/films', async function(req, res){
         const query = await modules.addFilm(newFilm);
         httpRes = await modules.postResponse(query);
     } catch(err) {
-        httpRes = await modules.errorResponse(err);
+        httpRes = await modules.errorResponse(err, req);
     } 
 
     res.status(httpRes.status);
