@@ -11,6 +11,17 @@ let httpRes = '';
 
 router.get('/', async function(req, res) {
     try{
+        httpRes = await modules.getResponse("Welcome to MultimediaManagement API");
+    } catch(err) {
+        httpRes = await modules.errorResponse(err, req);
+    } finally {
+        res.status(httpRes.status);
+        res.send(httpRes.body);
+    }
+});
+
+router.get('/status', async function(req, res) {
+    try{
         httpRes = await modules.getResponse({"status": "OK"});
     } catch(err) {
         httpRes = await modules.errorResponse(err, req);
