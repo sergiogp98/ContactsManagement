@@ -17,10 +17,10 @@ async function getResponse(query) {
     return res;
 }
 
-async function errorResponse(err) {
+async function errorResponse(err, req) {
     if (err.name == 'CastError') {
         res.status = HttpStatus.NOT_ACCEPTABLE;
-        res.body = err;
+        res.body = `Error: ${err.message}. Please redirect to ${req.get('host')}/api-docs to see the API routes documentation`;
     } else {
         res.status = HttpStatus.INTERNAL_SERVER_ERROR;
         res.body = err;
