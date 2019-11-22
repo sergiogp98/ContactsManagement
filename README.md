@@ -32,6 +32,9 @@ Este proyecto se basa en el desarrollo de un microservicio de una aplicación so
 ### Despliegue
 despliegue: https://multimedia-management.herokuapp.com/
 
+### Herramienta de construcción
+buildtool: package.json
+
 ### Autor
 [Sergio Garcia Prados](https://github.com/sergiogp98)
 
