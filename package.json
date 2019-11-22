@@ -1,6 +1,6 @@
 {
   "name": "multimedia-management",
-  "version": "1.0.0",
+  "version": "2.0",
   "main": "index.js",
   "description": "Desarrollo de un microservicio de una aplicación sobre gestión de contenido multimedia",
   "directories": {
