@@ -15,8 +15,9 @@ Para poder usar esta herramienta, es necesario que exista el archivo [package.js
 * **dependencies**: dependencias necesarias para instalar (se instalan con *npm install*)
 * **devDependencies**: dependencias necesarias para instalar durante el proceso de desarrollo (se instalan con *npm install*)
 * **scripts**: reglas para ejecutar diferentes comandos. En concreto se lista:    
-    * *test*: ejecuta los tests de prueba localizados en el directorio [tests](https://github.com/sergiogp98/MultimediaManagement/tree/master/tests) y hace una cobertura de código.
+    * *test*: ejecuta los tests de prueba localizados en el directorio */tests/* y hace una cobertura de código.
     * *start*: lanza la aplicación cuando está en producción 
+    * *start-heroku*: despliega en Heroku cuando pasa los tests correspondientes
     * *start-dev*: lanza la aplicación cuando está en desarrollo
     * *stop*: detiene la ejecución de la aplicación cuando está en producción
     * *restart*: reincia la ejecución de la aplicación cuando está en producción
