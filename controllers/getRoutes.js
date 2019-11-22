@@ -27,7 +27,7 @@ router.get('/status', async function(req, res) {
         httpRes = await modules.errorResponse(err, req);
     } finally {
         res.status(httpRes.status);
-        res.send(httpRes.body);
+        res.json(httpRes.body);
     }
 });
 
