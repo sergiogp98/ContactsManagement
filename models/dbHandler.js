@@ -72,4 +72,4 @@ module.exports = {
     deleteFilmDocument: deleteFilmDocument,
     updateFilmDocument: updateFilmDocument,
     getConnection: getConnection
-}
+};

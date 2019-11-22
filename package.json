@@ -37,7 +37,8 @@
     "monit": "pm2 monit",
     "plus": "pm2 plus",
     "logs": "pm2 logs",
-    "delete": "pm2 delete all"
+    "delete": "pm2 delete all",
+    "eslint": "eslint ."
   },
   "jest": {
     "testEnvironment": "node",

@@ -1,10 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const modules = require('../modules');
+const mongose = require('mongoose');
 
 const castError = {
     name: "CastError"
-}
+};
+let query = mongose.Query;
+let httpRes = '';
 
 router.get('/', async function(req, res) {
     try{
@@ -77,7 +80,7 @@ router.get('/films/length/:length', async function(req, res){
         res.status(httpRes.status);
         res.send(httpRes.body);
     }
-})
+});
 
 router.get('/films/length/:option/:length', async function(req, res){
     try{

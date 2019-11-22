@@ -50,32 +50,32 @@ afterAll(async () => {
 describe('DELETE /film', function(){
     it('Delete film by ID', async done => {
         const id = filmAdded['_id'];
-        const response = await request.delete(`/films/${id}`)
+        const response = await request.delete(`/films/${id}`);
         expect(response.status).toBe(200);
         done();
     });
 
     it('Delete films by title', async done => {
-        const response = await request.delete(`/films/title/${film.title}`)
+        const response = await request.delete(`/films/title/${film.title}`);
         expect(response.status).toBe(200);
         done();
     });
     
     describe('Delete films by year', function(){
         it('Greater than a year', async done => {
-            const response = await request.delete(`/films/year/gt/${film.year - 1}`)
+            const response = await request.delete(`/films/year/gt/${film.year - 1}`);
             expect(response.status).toBe(200);
             done();
         });
 
         it('Equal than a year', async done => {
-            const response = await request.delete(`/films/year/${film.year}`)
+            const response = await request.delete(`/films/year/${film.year}`);
             expect(response.status).toBe(200);
             done();
         });
         
         it('Less than a year', async done => {
-            const response = await request.delete(`/films/year/lt/${film.year + 1}`)
+            const response = await request.delete(`/films/year/lt/${film.year + 1}`);
             expect(response.status).toBe(200);
             done();
         });
@@ -83,32 +83,32 @@ describe('DELETE /film', function(){
     
     describe('Delete films by length', function(){
         it('Greater than a length', async done => {
-            const response = await request.delete(`/films/length/gt/${film.length - 1}`)
+            const response = await request.delete(`/films/length/gt/${film.length - 1}`);
             expect(response.status).toBe(200);
             done();
         });
 
         it('Equal than a length', async done => {
-            const response = await request.delete(`/films/length/${film.length}`)
+            const response = await request.delete(`/films/length/${film.length}`);
             expect(response.status).toBe(200);
             done();
         });
         
         it('Less than a length', async done => {
-            const response = await request.delete(`/films/length/lt/${film.length + 1}`)
+            const response = await request.delete(`/films/length/lt/${film.length + 1}`);
             expect(response.status).toBe(200);
             done();
         });
     });
 
     it('Delete films by genre', async done => {
-        const response = await request.delete(`/films/genre/${film.genre[0]}%20${film.genre[1]}%20${film.genre[2]}`)
+        const response = await request.delete(`/films/genre/${film.genre[0]}%20${film.genre[1]}%20${film.genre[2]}`);
         expect(response.status).toBe(200);
         done();
     });
     
     it('Delete films by director', async done => {
-        const response = await request.delete(`/films/director/${film.director}`)
+        const response = await request.delete(`/films/director/${film.director}`);
         expect(response.status).toBe(200);
         done();
     });

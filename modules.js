@@ -4,17 +4,17 @@
     exports.addFilm = addFilm.addFilm;
 
     //Delete
-    const deleteFilm = require('./helpers/films/deleteFilm')
-    exports.deleteFilm = deleteFilm.deleteFilm,
-    exports.deleteFilmDirector = deleteFilm.deleteFilmDirector,
-    exports.deleteFilmGenre = deleteFilm.deleteFilmGenre,
-    exports.deleteFilmLength = deleteFilm.deleteFilmLength,
-    exports.deleteFilmLessLength = deleteFilm.deleteFilmLessLength,
-    exports.deleteFilmGreaterLength = deleteFilm.deleteFilmGreaterLength,
-    exports.deleteFilmTitle = deleteFilm.deleteFilmTitle,
-    exports.deleteFilmYear = deleteFilm.deleteFilmYear,
-    exports.deleteFilmLessYear = deleteFilm.deleteFilmLessYear,
-    exports.deleteFilmGreaterYear = deleteFilm.deleteFilmGreaterYear
+    const deleteFilm = require('./helpers/films/deleteFilm');
+    exports.deleteFilm = deleteFilm.deleteFilm;
+    exports.deleteFilmDirector = deleteFilm.deleteFilmDirector;
+    exports.deleteFilmGenre = deleteFilm.deleteFilmGenre;
+    exports.deleteFilmLength = deleteFilm.deleteFilmLength;
+    exports.deleteFilmLessLength = deleteFilm.deleteFilmLessLength;
+    exports.deleteFilmGreaterLength = deleteFilm.deleteFilmGreaterLength;
+    exports.deleteFilmTitle = deleteFilm.deleteFilmTitle;
+    exports.deleteFilmYear = deleteFilm.deleteFilmYear;
+    exports.deleteFilmLessYear = deleteFilm.deleteFilmLessYear;
+    exports.deleteFilmGreaterYear = deleteFilm.deleteFilmGreaterYear;
 
     //Get
     const getFilm = require('./helpers/films/getFilm');
@@ -30,7 +30,7 @@
     exports.getFilmTitle = getFilm.getFilmTitle;
 
     //Modify
-    const modifyFilm = require('./helpers/films/modifyFilm')
+    const modifyFilm = require('./helpers/films/modifyFilm');
     exports.modifyFilm = modifyFilm.modifyFilm;
 
 //DB modules

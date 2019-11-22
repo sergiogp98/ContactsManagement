@@ -42,32 +42,32 @@ afterAll(async () => {
 describe('GET /film', function() {
     it('Get film by ID', async done => {
         const id = filmAdded['_id']; 
-        const response = await request.get(`/films/${id}`)
+        const response = await request.get(`/films/${id}`);
         expect(response.status).toBe(200);
         done();
     });
     
     it('Get films by title', async done => {
-        const response = await request.get(`/films/title/${film.title}`)
+        const response = await request.get(`/films/title/${film.title}`);
         expect(response.status).toBe(200);
         done(); 
     });
     
     describe('Get films by year', function() {
         it('Greater than a year', async done => {
-            const response = await request.get(`/films/year/gt/${film.year - 1}`)
+            const response = await request.get(`/films/year/gt/${film.year - 1}`);
             expect(response.status).toBe(200);
             done();
         });
 
         it('Equal than a year', async done => {
-            const response = await request.get(`/films/year/${film.year}`)
+            const response = await request.get(`/films/year/${film.year}`);
             expect(response.status).toBe(200);
             done();
         });
         
         it('Less than a year', async done => {
-            const response = await request.get(`/films/year/lt/${film.year + 1}`)
+            const response = await request.get(`/films/year/lt/${film.year + 1}`);
             expect(response.status).toBe(200);
             done();
         });
@@ -75,32 +75,32 @@ describe('GET /film', function() {
 
     describe('Get films by length', function() {
         it('Greater than a length', async done => {
-            const response = await request.get(`/films/length/gt/${film.length - 1}`)
+            const response = await request.get(`/films/length/gt/${film.length - 1}`);
             expect(response.status).toBe(200);
             done();
         });
 
         it('Equal than a length', async done => {
-            const response = await request.get(`/films/length/${film.length}`)
+            const response = await request.get(`/films/length/${film.length}`);
             expect(response.status).toBe(200);
             done();
         });
         
         it('Less than a length', async done => {
-            const response = await request.get(`/films/length/lt/${film.length + 1}`)
+            const response = await request.get(`/films/length/lt/${film.length + 1}`);
             expect(response.status).toBe(200);
             done();
         });
     });
     
     it('Get films by genre', async done => {
-        const response = await request.get(`/films/genre/${film.genre[0]}%20${film.genre[1]}%20${film.genre[2]}`)
+        const response = await request.get(`/films/genre/${film.genre[0]}%20${film.genre[1]}%20${film.genre[2]}`);
         expect(response.status).toBe(200);
         done();
     });
     
     it('Get films by director', async done => {
-        const response = await request.get(`/films/director/${film.director}`)
+        const response = await request.get(`/films/director/${film.director}`);
         expect(response.status).toBe(200);
         done();
     });

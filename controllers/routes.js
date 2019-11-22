@@ -6,7 +6,7 @@ const deleteRoutes = require('./deleteRoutes');
 const morgan = require('morgan');
 const swaggerUI = require('swagger-ui-express');
 const yaml = require('yamljs');
-const swaggerDocument = yaml.load(`${__dirname}/../docs/swagger.yml`)
+const swaggerDocument = yaml.load(`${__dirname}/../docs/swagger.yml`);
 
 
 let app = express();

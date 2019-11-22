@@ -51,6 +51,6 @@ module.exports = {
     deleteFilmYear: deleteFilmYear,
     deleteFilmLessYear: deleteFilmLessYear,
     deleteFilmGreaterYear: deleteFilmGreaterYear
-}
+};
 
 

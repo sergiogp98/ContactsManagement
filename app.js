@@ -16,7 +16,7 @@ const COLLECTION_NAME = process.env.COLLECTION_NAME || "Film";
         //const uri = `mongodb://${ADDRESS}:${DB_PORT}/${DB_NAME}`;
     
     //Use remote database
-    const uri = `mongodb+srv://${DB_USERNAME}:${DB_PASSWORD}@clustersergio-czq9b.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`
+    const uri = `mongodb+srv://${DB_USERNAME}:${DB_PASSWORD}@clustersergio-czq9b.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`;
 
 async function startAPI() {
     await modules.connectDB(uri);
@@ -25,7 +25,7 @@ async function startAPI() {
     app.listen(SERVER_PORT, function() {
         console.log(`Listening on http://${ADDRESS}:${SERVER_PORT}`);
     });
-};
+}
 
 startAPI();
 

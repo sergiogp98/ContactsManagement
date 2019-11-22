@@ -4,12 +4,13 @@ const modules = require('../modules');
 
 const castError = {
     name: "CastError"
-}
-
+};
+let query = mongose.Query;
+let httpRes = '';
 
 router.delete('/films/:id', async function(req, res){
     try{
-        query = await modules.deleteFilm(req.params.id)
+        query = await modules.deleteFilm(req.params.id);
         httpRes = await modules.deleteResponse(query);   
     } catch(err) {
         httpRes = await modules.errorResponse(err);

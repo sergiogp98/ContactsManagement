@@ -3,7 +3,7 @@ const HttpStatus = require('http-status-codes');
 let res = {
     status: new Number,
     body: new String
-}
+};
 
 async function getResponse(query) {
     if (query != '') {
@@ -71,4 +71,4 @@ module.exports = {
     deleteResponse: deleteResponse,
     postResponse: postResponse,
     putResponse: putResponse
-}
+};
