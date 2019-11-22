@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const modules = require('../modules');
-const mongose = require('mongoose');
+const mongoose = require('mongoose');
 
 const castError = {
     name: "CastError"
 };
-let query = mongose.Query;
+let query = mongoose.Query;
 let httpRes = '';
 
 router.get('/', async function(req, res) {

@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const modules = require('../modules');
+const mongoose = require('mongoose')
 
 const castError = {
     name: "CastError"
 };
-let query = mongose.Query;
+let query = mongoose.Query;
 let httpRes = '';
 
 router.delete('/films/:id', async function(req, res){
