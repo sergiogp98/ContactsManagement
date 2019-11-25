@@ -10,7 +10,7 @@ Funciones principales:
 * Los proveedores gestionan la seguridad, los sistemas operativos, el software de servidor y las copias de seguridad.
 * Facilita la colaboración incluso si los equipos trabajan en remoto.
 
-En esta API se usa [Heroku](https://www.heroku.com). Las siguiente sección explica los pasos y archivos de configuración necesarios para desplegar la API en el correspondiente PaaS.
+En esta API se usa [Heroku](https://www.heroku.com) y [Azure](https://azure.microsoft.com/es-es/). Las siguiente sección explica los pasos y archivos de configuración necesarios para desplegar la API en el correspondiente PaaS.
 
 Nota: esta API se ha desarrollado sobre Ubuntu 18.04 (bionical)
 
