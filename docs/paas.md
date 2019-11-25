@@ -124,7 +124,10 @@ Para configurar Heroku para que cada vez que hagamos *push* a nuestro repositori
 
 A diferencia de Heroku, en concreto para Travis, hay que configurarlo para que haga *push* en el repositorio de Azure simpre y cuando pase los test (para CircleCI no es necesario ya que lo hace automáticamente).
 
-Primero hay que que instalarse los siguientes paquetes: **ruby ruby-dev gem**
+Primero hay que que instalarse los siguientes paquetes: 
+* **ruby** 
+* **ruby-dev** 
+* **gem**
 
 A continuación nos instalamos el paquete de travis desde el gestor de paquetes de ruby [gem](https://rubygems.org/?locale=es):
 
