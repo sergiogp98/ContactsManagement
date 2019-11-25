@@ -1,18 +1,25 @@
 language: node_js
 
 node_js:
-  - "12"
-  - "10"
-  - "8"
+- '12'
+- '10'
+- '8'
 
 cache:
   directories:
-    - "node_modules"
+  - node_modules
 
 sudo: false
 
 install:
-  - npm install
+- npm install
 
 script:
-  -  npm test  
+- npm test
+
+env:
+  global:
+    secure: QB0L29VDrbs2UJg9yCKjp+8jlghM1awNSoCqy6/3IGOxnUPtZalH9ltnEarQY0rDVa/KQFn9cB/jAX4kbOvSJ3se4/Gsh0S3fTekQn/ETEAizJVmumkGvcKV7ZTlQaWUIFhgycIGexpx4SqYJnAd1oFwADH70/IJdPwTmD4Nwi/H0KLm1f+Fb4lhFnbjkfZU266/0vUlzcgZtN7fH0tHYmsjCYBbu92Z4sjeaN78tjf7J+NbJDlnoFRW0b8dm7LSeQ/CQUfjrn6rY6YMe2B0tXfgnt5Zyv0bwd7+8L3TOGbdC0pDQySSg0ceQ2VETA3TuF/a5/vx0MqOMGz89RBK6Fggkx8XS2e9G4XQgrJn/antw70At2JJGcRyPD2gnEpZdqcl6wc/OpAgENJQKLKvGjymYTQaDYyAvGoOs7pV3kFmOqPziQbMFNTU4KWWeqp6fc7DNCd0DZ1xIfha1vjXmkUpFSs1w5GMQp62dii+GolysPQoTEDE9U4lKD9U+AZLDRD0bU3z4u9IpxDZ3Momn3ipX3vfTlIVR9eRqkZGIP6GgpmUf85F7KolUXYtqW+AYk9TKzvD4PUMrOdmgERXFArGw4Qu8nKGzrNshTZoESW+pt5eVvCUMeb1W83I+Y0TmzIrk7NrXFtaAkloYwQDTQWfW2ZfgCwztUwPHPXpNrY=
+
+deploy:
+  - provider: azure_web_apps
