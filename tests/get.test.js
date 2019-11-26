@@ -31,7 +31,8 @@ beforeAll(async () => {
 
 afterAll(async () => {
     try{
-        await moongose.connection.close();
+        //await moongose.connection.close();
+        await modules.disconnectDB();
         await mongoServer.stop();
     } catch(err) {
         console.log(err);
@@ -40,6 +41,24 @@ afterAll(async () => {
 });
 
 describe('GET /film', function() {
+    it('Get DB', async done => {
+        const response = await request.get(`/films`);
+        expect(response.status).toBe(200);
+        done();
+    });
+
+    it('Get /', async done => {
+        const response = await request.get(`/`);
+        expect(response.status).toBe(200);
+        done();
+    });
+
+    it('Get /status', async done => {
+        const response = await request.get(`/status`);
+        expect(response.status).toBe(200);
+        done();
+    });
+
     it('Get film by ID', async done => {
         const id = filmAdded['_id']; 
         const response = await request.get(`/films/${id}`);

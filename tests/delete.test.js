@@ -39,7 +39,8 @@ beforeEach(async () => {
 
 afterAll(async () => {
     try{
-        await moongose.connection.close();
+        //await moongose.connection.close();
+        await modules.disconnectDB();
         await mongoServer.stop();
     } catch(err) {
         console.log(err);

@@ -18,7 +18,7 @@ async function getConnection() {
 }
 
 async function disconnectDB() {
-    return await mongoose.disconnect();    
+    return await mongoose.connection.close();    
 }
 
 async function getDB(name) {
