@@ -22,7 +22,7 @@ Este proyecto se basa en el desarrollo de un microservicio de una aplicación so
 * [Documentación de rutas](https://multimedia-management.herokuapp.com/api-docs/) 
 * [Integración continua](https://github.com/sergiogp98/MultimediaManagement/blob/master/docs/herramientas_ci.md)
 * [PasS](https://github.com/sergiogp98/MultimediaManagement/blob/master/docs/paas.md)
-* [Docker]
+* [Docker](https://github.com/sergiogp98/MultimediaManagement/blob/master/docs/docker.md)
 
 ### ¿Cómo instalarla?
 `npm install` 
