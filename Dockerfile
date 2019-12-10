@@ -12,8 +12,7 @@ COPY ./middlewares ./middlewares/
 COPY ./models ./models/
 COPY ./app.js ./
 COPY ./modules.js ./
-COPY ./README.md ./ 
-COPY ./docs ./docs/
+COPY ./docs/swagger.yml ./docs/swagger.yml
 
 #Listening port environmental variable
 EXPOSE $PORT
