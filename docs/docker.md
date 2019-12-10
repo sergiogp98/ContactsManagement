@@ -10,19 +10,31 @@ Estos contenedores guardan una pila o *stack* (conjunto de aplicaciones) que uni
 ## Docker
 Existen múltiples herramientas para virtualizar a nivel de sistema operativo. No obstante, una de las herramienta más usada últimamente es Docker. Docker es un proyecto de código abierto que automatiza el despliegue de aplicaciones dentro de contenedores de software, proporcionando una capa adicional de abstracción y automatización de virtualización de aplicaciones en múltiples sistemas operativos. ​Docker utiliza características de aislamiento de recursos del kernel Linux, tales como cgroups y espacios de nombres (namespaces) para permitir que "contenedores" independientes se ejecuten dentro de una sola instancia de Linux, evitando la sobrecarga de iniciar y mantener máquinas virtuales.2
 
-## Configuración del Dockerfile
+#### Configuración del Dockerfile
 Para desplegar la API en Docker es necesario crear en el directorio raiz del proyecto un Dockerfile. Un Dockerfile es un archivo de texto plano que contiene una serie de instrucciones necesarias para crear una imagen (citado anteriormente) que, posteriormente, se convertirá en una sola aplicación utilizada para un determinado propósito.
 En concreto, el Dockerfile de este proyecto consta de las siguientes instrucciones:
 * **FROM**: indica la imagen base sobre la que se construirá la aplicación dentro del contenedor. En concreto, usaré la imagen oficila de NodeJS pero  
 con el *[tag](https://hub.docker.com/_/node)* de *alpine*. Los *tag* son las etiquetas de las imágenes que permite tener una amplia gama la misma imagen. Yo he usado la de *alpine* la cual levanta la imagen sobre el la distribución de Liux *Alpine*.
-* **WORKDIR**: indica el directorio de trabajo para las instrucciones de RUN, CMD, ENTRYPOINT, COPY y ADD. 
-* **COPY**: copia los archivos de la primera ruta pasada por argumento a la segunda. Simplemente copia los archivos necesarios
-* **EXPOSE**: informa a Docker que el contenedor escucha el puerto pasado por argumento. En concreto le paso la variable de entorno
-* **RUN**: ejecuta los comandos pasados como argumento. En concreto indico que se instalen las dependencias necesarias para lanzarlo solo en producción
-* **ENTRYPOINT**: permite configurar un contenedor para que se lanze como un ejecutable. Si hay varios, solo tendrá efecto el último
+* **WORKDIR**: indica el directorio de trabajo para las instrucciones de RUN, CMD, ENTRYPOINT, COPY y ADD. Se usa el subdirectorio /usr/src/app
+* **COPY**: copia los archivos de la primera ruta pasada por argumento a la segunda. El Dockerfile únicamente copia los archivos necesarios para que funcionae la API, los cuales son:
+    * **package.json y package-lock.json**: incluye los archivos de configuración para la herramienta de construcción de NodeJS (npm)
+    * **controllers**: la implementación de las rutas
+    * **helpers**: las funciones de la API
+    * **middlewares**: las funciones necesarias para la correcta ejecución de algunas funciones
+    * **models**: las funciones relacionadas con el manejo de la base de datos y la definición del esquema de los modelos
+    * **app.js**: script principal
+    * **modules.js**: definición de las rutas de todos los archivos
+    * **swagger.yml**: documentación de las rutas. Necesario para que habilitar la ruta /api-docs
 
-## Despliegue y automatización
-Una vex creado el Dockerfile, podemos pasar al despliegue del contenedor. Para ello primero nos creamos una cuenta en [Docker Hub](https://hub.docker.com/). Docker Hub es un repositorio público en la nube, similar a Github, para distribuir los contenidos. Está mantenido por la propia Docker y hay multitud de imágenes, de carácter gratuito, que se pueden descargar y asi no tener que hacer el trabajo desde cero al poder aprovechar “plantillas”.
+* **EXPOSE**: informa a Docker que el contenedor escucha el puerto pasado por argumento. En concreto le paso la variable de entorno definida en este [archivo](https://github.com/sergiogp98/MultimediaManagement/blob/master/app.js)
+* **RUN**: ejecuta los comandos pasados como argumento. En concreto indico que se instalen las dependencias necesarias para lanzarlo solo en producción
+* **ENTRYPOINT**: permite configurar un contenedor para que se lanze como un ejecutable. Si hay varios, solo tendrá efecto el último. Simplemente ejecuta el script principal
+
+## Docker Hub
+[Docker Hub](https://hub.docker.com/) es un repositorio público en la nube, similar a Github, para distribuir los contenidos. Está mantenido por la propia Docker y hay multitud de imágenes, de carácter gratuito, que se pueden descargar y asi no tener que hacer el trabajo desde cero al poder aprovechar “plantillas”.
+
+#### Despliegue y automatización en Docker Hub
+Para desplegar el contenedor en Docker Hub es necesario un Dockerfile y una cuenta en Docker Hub.
 
 Tras crearnos una cuenta, accedemos a *Repositories* y crearemos uno donde:
 * Indicamos la visibilidad: pública o privada (en mi caso pública)
@@ -39,3 +51,37 @@ A continuación, indicamos el respositorio en concreto que queremos subir. Algun
 Una vez creado, tan solo es necesario hacer un *push* a tu respositorio, y si pasa los tests, se creará la imagen.
 
 ![](./img/docker3.png)
+
+## Heroku
+Heroku provee dos formas de desplegar la API con Docker:
+* *Container Registry*: permite desplegar imágenes preconstruidas a Heroku
+* Construir la imagen de Docker con un archivo YAML (heroku.yml) para desplegar en Heroku
+Usaré la segunda opción ya que ya tengo la imagen de Docker creada. 
+
+#### Configuración del YAML
+Para ello se crea un archivo *heroku.yml* en la raiz del directorio del proyecto. Este archivo contiene la siguiente configuración:
+
+```
+build:
+    docker:
+        web: Dockerfile
+```
+
+Indicamos la ruta del Dockerfile. En este caso al estar en la raiz del directorio del proyecto, simplemente indicamos el nombre del fichero Dockerfile
+
+```
+run:
+    web: npm run start-heroku
+```
+
+Especificamos el comando a ejecutar para iniciar el contenedor. En este caso ejecuto la misma orden que uso para desplegar la API en Heroku.
+
+#### Despliegue y automatización en Heroku
+Para desplegar el contenedor en Heroku, primero subimos al repositorio el archivo *heroku.yml*. Una vez subido ejecutamos la siguiente orden desde Heroku CLI:
+
+```
+heroku stacks:set container
+```
+
+Esta orden indica que la aplicación en Heroku es un contenedor
+
