@@ -13,22 +13,55 @@ Existen múltiples herramientas para virtualizar a nivel de sistema operativo. N
 #### Configuración del Dockerfile
 Para desplegar la API en Docker es necesario crear en el directorio raiz del proyecto un Dockerfile. Un Dockerfile es un archivo de texto plano que contiene una serie de instrucciones necesarias para crear una imagen (citado anteriormente) que, posteriormente, se convertirá en una sola aplicación utilizada para un determinado propósito.
 En concreto, el Dockerfile de este proyecto consta de las siguientes instrucciones:
-* **FROM**: indica la imagen base sobre la que se construirá la aplicación dentro del contenedor. En concreto, usaré la imagen oficila de NodeJS pero  
-con el *[tag](https://hub.docker.com/_/node)* de *alpine*. Los *tag* son las etiquetas de las imágenes que permite tener una amplia gama la misma imagen. Yo he usado la de *alpine* la cual levanta la imagen sobre el la distribución de Liux *Alpine*.
-* **WORKDIR**: indica el directorio de trabajo para las instrucciones de RUN, CMD, ENTRYPOINT, COPY y ADD. Se usa el subdirectorio /usr/src/app
-* **COPY**: copia los archivos de la primera ruta pasada por argumento a la segunda. El Dockerfile únicamente copia los archivos necesarios para que funcionae la API, los cuales son:
-    * **package.json y package-lock.json**: incluye los archivos de configuración para la herramienta de construcción de NodeJS (npm)
-    * **controllers**: la implementación de las rutas
-    * **helpers**: las funciones de la API
-    * **middlewares**: las funciones necesarias para la correcta ejecución de algunas funciones
-    * **models**: las funciones relacionadas con el manejo de la base de datos y la definición del esquema de los modelos
-    * **app.js**: script principal
-    * **modules.js**: definición de las rutas de todos los archivos
-    * **swagger.yml**: documentación de las rutas. Necesario para que habilitar la ruta /api-docs
 
-* **EXPOSE**: informa a Docker que el contenedor escucha el puerto pasado por argumento. En concreto le paso la variable de entorno definida en este [archivo](https://github.com/sergiogp98/MultimediaManagement/blob/master/app.js)
-* **RUN**: ejecuta los comandos pasados como argumento. En concreto indico que se instalen las dependencias necesarias para lanzarlo solo en producción
-* **ENTRYPOINT**: permite configurar un contenedor para que se lanze como un ejecutable. Si hay varios, solo tendrá efecto el último. Simplemente ejecuta el script principal
+```
+FROM node:alpine
+```
+Indica la imagen base sobre la que se construirá la aplicación dentro del contenedor. En concreto, usaré la imagen oficila de NodeJS pero con el *[tag](https://hub.docker.com/_/node)* de *alpine*. Los *tag* son las etiquetas de las imágenes que permite tener una amplia gama la misma imagen. Yo he usado la de *alpine* la cual levanta la imagen sobre el la distribución de Liux *Alpine*.
+
+```
+WORKDIR /usr/src/app
+```
+Indica el directorio de trabajo para las instrucciones de RUN, CMD, ENTRYPOINT, COPY y ADD. Se usa el subdirectorio */usr/src/app*
+
+```
+COPY ./package*.json ./
+COPY ./controllers ./controllers/
+COPY ./helpers ./helpers/
+COPY ./middlewares ./middlewares/
+COPY ./models ./models/
+COPY ./app.js ./
+COPY ./modules.js ./
+COPY ./docs/swagger.yml ./docs/swagger.yml
+```
+
+Copia los archivos exclusivamente necesarios de la primera ruta pasada por argumento a la segunda para que funcionae la API.
+* **package.json y package-lock.json**: incluye los archivos de configuración para la herramienta de construcción de NodeJS (npm)
+* **controllers**: la implementación de las rutas
+* **helpers**: las funciones de la API
+* **middlewares**: las funciones necesarias para la correcta ejecución de algunas funciones
+* **models**: las funciones relacionadas con el manejo de la base de datos y la definición del esquema de los modelos
+* **app.js**: script principal
+* **modules.js**: definición de las rutas de todos los archivos
+* **swagger.yml**: documentación de las rutas. Necesario para que habilitar la ruta /api-docs
+
+```
+EXPOSE $PORT
+```
+
+Informa a Docker que el contenedor escucha el puerto pasado por argumento. En concreto le paso la variable de entorno definida en este [archivo](https://github.com/sergiogp98/MultimediaManagement/blob/master/app.js)
+
+```
+RUN npm install ci --only=production
+```
+
+Ejecuta los comandos pasados como argumento. En concreto indico que se instalen las dependencias necesarias para lanzarlo solo en producción
+
+```
+ENTRYPOINT node app.js
+```
+
+Permite configurar un contenedor para que se lanze como un ejecutable. Si hay varios, solo tendrá efecto el último. Simplemente ejecuta el script principal
 
 ## Docker Hub
 [Docker Hub](https://hub.docker.com/) es un repositorio público en la nube, similar a Github, para distribuir los contenidos. Está mantenido por la propia Docker y hay multitud de imágenes, de carácter gratuito, que se pueden descargar y asi no tener que hacer el trabajo desde cero al poder aprovechar “plantillas”.
@@ -77,11 +110,52 @@ run:
 Especificamos el comando a ejecutar para iniciar el contenedor. En este caso ejecuto la misma orden que uso para desplegar la API en Heroku.
 
 #### Despliegue y automatización en Heroku
-Para desplegar el contenedor en Heroku, primero subimos al repositorio el archivo *heroku.yml*. Una vez subido ejecutamos la siguiente orden desde Heroku CLI:
+Para desplegar el contenedor en Heroku, previamente es necesario tener vinculado la cuenta de Hreoku con el repositorio para que cada vez que se haga *push* se despliegue automáticamente en Heroku (explicado en la [documentación de PaaS](https://github.com/sergiogp98/MultimediaManagement/blob/master/docs/paas.md). Una vez vinculado, subimos al repositorio el archivo *heroku.yml*. A continuación ejecutamos la siguiente orden desde la línea de comandos:
 
 ```
 heroku stacks:set container
 ```
 
 Esta orden indica que la aplicación en Heroku es un contenedor
+
+Finalmente hacemos *push* al repositorio. Si todo va bien, los logs de despliegue en Heroku deberían de mostrar lo siguiente:
+
+![](./img/heroku_docker.png)
+
+## Azure
+Azur permite ejecutar contenedores de Docker sin servidor en Azure con sencillez y velocidad gracias a *Azure Container Instances*. 
+
+Primero creamos un grupo de recursos:
+
+```
+az group create --n miGrupoDeRecursosDocker --location "West Europe"
+```
+
+Posteriormente se crea un registro de contenedores
+
+```
+az acr create -n miContenedorRegistroAzure -g miGrupoDeRecursosDocker --sku Standard --admin-enabled true
+```
+
+Se espicifica el nombre, el grupo de recrusos, el tipo de susbscripción y habilitamos la opción de administrador
+
+A continuación secrea el plan de servicio. Para ello ejecutamos la siguiente orden:
+
+```
+az appservice plan create -n miServicioApp -g miGrupoDeRecursosDocker --is-linux --sku F1
+```
+
+En ella indicamos el nombre dle plan de servicio, el grupo de recursos, worker de Linux, la localización y el tipo de susbscripción
+
+Una vez creado el plan de servicio, se pasa a crear una aplicación web que corra el contenedor de Docker
+
+```
+az webapp create -n multimedia-management-docker -g miGrupoDeRecursos -p miServicioApp -i sergiogp98/multimedia-management:latest
+```
+
+Se indica el nombre, el grupo de recursos y el plan a usar y el nombre del contenedor en Docker Hub con el tag correspondiente
+
+Si todo va bien, se puede observar la API desplegada:
+
+![](./img/docker_deploted_azure.png)
 
