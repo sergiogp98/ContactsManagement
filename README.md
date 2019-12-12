@@ -32,12 +32,13 @@ Este proyecto se basa en el desarrollo de un microservicio de una aplicación so
 
 ### Despliegue
 despliegue: https://multimedia-management.herokuapp.com/
+Contenedor: https://multimedia-management-docker.azurewebsites.net
 
 ### Herramienta de construcción
 buildtool: package.json
 
-### Docker
-Contenedor: https://multimedia-management-docker.azurewebsites.net
+### Docker Hub
+URL: https://hub.docker.com/r/sergiogp98/multimedia-management
 
 ### Autor
 [Sergio Garcia Prados](https://github.com/sergiogp98)
