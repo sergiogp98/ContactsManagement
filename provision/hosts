@@ -9,7 +9,7 @@
 #   - A hostname/ip can be a member of multiple groups
 
 [vagrantboxes]
-ubuntuVM
+multimedia-management
 
 [vagrantboxes:vars]
 ansible_ssh_host=127.0.0.1
