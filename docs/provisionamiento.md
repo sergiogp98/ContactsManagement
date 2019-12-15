@@ -1,8 +1,3 @@
-vagrant init ubuntu/bionic64
-vagrant up
-npm run ansible
-vagrant package --output provision/ubuntuVM.box --include .vagrant
- 
 # Provisionamiento de máquinas virtuales
 Para este proyecto voy a usar Vagrant como herramienta para crear una máquina virtual local y Ansible como herramienta de provisionamiento
  
