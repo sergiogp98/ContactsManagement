@@ -1,4 +1,8 @@
 #Folders and files
+.vagrant
+provision/roles
+provision/ansible.cfg
+provision/hosts
 
 # Logs
 logs
