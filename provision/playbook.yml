@@ -1,0 +1,24 @@
+- hosts: vagrantboxes
+  become: yes
+  tasks:
+  - name: Instalar curl
+    apt:
+     pkg: ['curl']
+  
+  - name: Instalar PPA del paquete nodejs
+    shell:
+     cmd: curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+    
+  - name: Instala paquetes
+    apt:
+     update_cache: yes
+     pkg: ['git', 'nodejs']
+  
+  - name: Clona repositorio
+    git:
+     repo: https://github.com/sergiogp98/MultimediaManagement.git
+     dest: $HOME/MultimediaManagement
+  
+  - name: Instalar paquetes según el archivo package.json
+    npm:
+     path: $HOME/MultimediaManagement
