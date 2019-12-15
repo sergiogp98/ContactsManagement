@@ -169,7 +169,7 @@ Instala los paquetes de producción necesarios para lanzar la API
 ### ansible.cfg
 
 ```
-inventory      = hosts
+inventory = hosts
 ```
 
 Ruta del archivo de máquinas a provisionar
