@@ -23,6 +23,7 @@ Este proyecto se basa en el desarrollo de un microservicio de una aplicación so
 * [Integración continua](https://github.com/sergiogp98/MultimediaManagement/blob/master/docs/herramientas_ci.md)
 * [PasS](https://github.com/sergiogp98/MultimediaManagement/blob/master/docs/paas.md)
 * [Docker](https://github.com/sergiogp98/MultimediaManagement/blob/master/docs/docker.md)
+* [Provisión](https://github.com/sergiogp98/MultimediaManagement/blob/master/docs/provisionamiento.md)
 
 ### ¿Cómo instalarla?
 `npm install` 
@@ -40,6 +41,9 @@ buildtool: package.json
 
 ### Docker Hub
 URL: https://hub.docker.com/r/sergiogp98/multimedia-management
+
+### Provisión
+provision: provision/playbook.yml
 
 ### Autor
 [Sergio Garcia Prados](https://github.com/sergiogp98)
